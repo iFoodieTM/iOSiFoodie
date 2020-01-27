@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5757C4F423DA2A870079EDFB /* RecoverPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757C4F323DA2A870079EDFB /* RecoverPasswordController.swift */; };
+		5757C4F623DA314B0079EDFB /* FakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757C4F523DA314B0079EDFB /* FakeController.swift */; };
+		577BE4BE23D7126F00371F30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4BD23D7126F00371F30 /* AppDelegate.swift */; };
+		577BE4C023D7126F00371F30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4BF23D7126F00371F30 /* ViewController.swift */; };
+		577BE4C323D7126F00371F30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 577BE4C123D7126F00371F30 /* Main.storyboard */; };
+		577BE4C523D7127000371F30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 577BE4C423D7127000371F30 /* Assets.xcassets */; };
+		577BE4C823D7127000371F30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 577BE4C623D7127000371F30 /* LaunchScreen.storyboard */; };
+		577BE4D023D7168C00371F30 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4CF23D7168C00371F30 /* LoginController.swift */; };
+		577BE4D223D71EA900371F30 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4D123D71EA900371F30 /* User.swift */; };
+		577BE4D423D7222C00371F30 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4D323D7222C00371F30 /* RegisterController.swift */; };
+		9F6608A9E9F9B5E916DFFF04 /* Pods_iOSiFoodie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED0609354FC9901259C3053 /* Pods_iOSiFoodie.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0ED0609354FC9901259C3053 /* Pods_iOSiFoodie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSiFoodie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5757C4F323DA2A870079EDFB /* RecoverPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordController.swift; sourceTree = "<group>"; };
+		5757C4F523DA314B0079EDFB /* FakeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeController.swift; sourceTree = "<group>"; };
+		577BE4BA23D7126F00371F30 /* iOSiFoodie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSiFoodie.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		577BE4BD23D7126F00371F30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		577BE4BF23D7126F00371F30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		577BE4C223D7126F00371F30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		577BE4C423D7127000371F30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		577BE4C723D7127000371F30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		577BE4C923D7127000371F30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		577BE4CF23D7168C00371F30 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		577BE4D123D71EA900371F30 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		577BE4D323D7222C00371F30 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		6068B1AC25094867BAA2F1F2 /* Pods-iOSiFoodie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSiFoodie.release.xcconfig"; path = "Target Support Files/Pods-iOSiFoodie/Pods-iOSiFoodie.release.xcconfig"; sourceTree = "<group>"; };
+		982C4E6D7B46ECB2A7D1BCEC /* Pods-iOSiFoodie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSiFoodie.debug.xcconfig"; path = "Target Support Files/Pods-iOSiFoodie/Pods-iOSiFoodie.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		577BE4B723D7126F00371F30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F6608A9E9F9B5E916DFFF04 /* Pods_iOSiFoodie.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		41308E9B76D6A714EA9B8964 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0ED0609354FC9901259C3053 /* Pods_iOSiFoodie.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		577BE4B123D7126F00371F30 = {
+			isa = PBXGroup;
+			children = (
+				577BE4BC23D7126F00371F30 /* iOSiFoodie */,
+				577BE4BB23D7126F00371F30 /* Products */,
+				BC81902AEFD3B32BEA845C49 /* Pods */,
+				41308E9B76D6A714EA9B8964 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		577BE4BB23D7126F00371F30 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				577BE4BA23D7126F00371F30 /* iOSiFoodie.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		577BE4BC23D7126F00371F30 /* iOSiFoodie */ = {
+			isa = PBXGroup;
+			children = (
+				577BE4BD23D7126F00371F30 /* AppDelegate.swift */,
+				577BE4BF23D7126F00371F30 /* ViewController.swift */,
+				577BE4C123D7126F00371F30 /* Main.storyboard */,
+				5757C4F323DA2A870079EDFB /* RecoverPasswordController.swift */,
+				577BE4D123D71EA900371F30 /* User.swift */,
+				577BE4CF23D7168C00371F30 /* LoginController.swift */,
+				5757C4F523DA314B0079EDFB /* FakeController.swift */,
+				577BE4D323D7222C00371F30 /* RegisterController.swift */,
+				577BE4C423D7127000371F30 /* Assets.xcassets */,
+				577BE4C623D7127000371F30 /* LaunchScreen.storyboard */,
+				577BE4C923D7127000371F30 /* Info.plist */,
+			);
+			path = iOSiFoodie;
+			sourceTree = "<group>";
+		};
+		BC81902AEFD3B32BEA845C49 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				982C4E6D7B46ECB2A7D1BCEC /* Pods-iOSiFoodie.debug.xcconfig */,
+				6068B1AC25094867BAA2F1F2 /* Pods-iOSiFoodie.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		577BE4B923D7126F00371F30 /* iOSiFoodie */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 577BE4CC23D7127000371F30 /* Build configuration list for PBXNativeTarget "iOSiFoodie" */;
+			buildPhases = (
+				EFA5E9A2BBDA0F6FA892FDD2 /* [CP] Check Pods Manifest.lock */,
+				577BE4B623D7126F00371F30 /* Sources */,
+				577BE4B723D7126F00371F30 /* Frameworks */,
+				577BE4B823D7126F00371F30 /* Resources */,
+				9CA519B0A90DD1209DABC5AC /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOSiFoodie;
+			productName = iOSiFoodie;
+			productReference = 577BE4BA23D7126F00371F30 /* iOSiFoodie.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		577BE4B223D7126F00371F30 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = VictorGarcia;
+				TargetAttributes = {
+					577BE4B923D7126F00371F30 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 577BE4B523D7126F00371F30 /* Build configuration list for PBXProject "iOSiFoodie" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 577BE4B123D7126F00371F30;
+			productRefGroup = 577BE4BB23D7126F00371F30 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				577BE4B923D7126F00371F30 /* iOSiFoodie */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		577BE4B823D7126F00371F30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				577BE4C823D7127000371F30 /* LaunchScreen.storyboard in Resources */,
+				577BE4C523D7127000371F30 /* Assets.xcassets in Resources */,
+				577BE4C323D7126F00371F30 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9CA519B0A90DD1209DABC5AC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOSiFoodie/Pods-iOSiFoodie-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOSiFoodie/Pods-iOSiFoodie-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOSiFoodie/Pods-iOSiFoodie-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EFA5E9A2BBDA0F6FA892FDD2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iOSiFoodie-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		577BE4B623D7126F00371F30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				577BE4D423D7222C00371F30 /* RegisterController.swift in Sources */,
+				577BE4D223D71EA900371F30 /* User.swift in Sources */,
+				577BE4C023D7126F00371F30 /* ViewController.swift in Sources */,
+				5757C4F423DA2A870079EDFB /* RecoverPasswordController.swift in Sources */,
+				5757C4F623DA314B0079EDFB /* FakeController.swift in Sources */,
+				577BE4D023D7168C00371F30 /* LoginController.swift in Sources */,
+				577BE4BE23D7126F00371F30 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		577BE4C123D7126F00371F30 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				577BE4C223D7126F00371F30 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		577BE4C623D7127000371F30 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				577BE4C723D7127000371F30 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		577BE4CA23D7127000371F30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		577BE4CB23D7127000371F30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		577BE4CD23D7127000371F30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 982C4E6D7B46ECB2A7D1BCEC /* Pods-iOSiFoodie.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = iOSiFoodie/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = VG.iOSiFoodie;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		577BE4CE23D7127000371F30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6068B1AC25094867BAA2F1F2 /* Pods-iOSiFoodie.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = iOSiFoodie/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = VG.iOSiFoodie;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		577BE4B523D7126F00371F30 /* Build configuration list for PBXProject "iOSiFoodie" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				577BE4CA23D7127000371F30 /* Debug */,
+				577BE4CB23D7127000371F30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		577BE4CC23D7127000371F30 /* Build configuration list for PBXNativeTarget "iOSiFoodie" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				577BE4CD23D7127000371F30 /* Debug */,
+				577BE4CE23D7127000371F30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 577BE4B223D7126F00371F30 /* Project object */;
+}
