@@ -2,11 +2,10 @@ import Foundation
 import UIKit
 
 class User {
-    var name: String = ""
     var email: String = ""
     var userName: String = ""
     var password: String = ""
-    var photo: String = ""
+    var password2: String = ""
     
 //    var imageProfile: String = ""
 //    let localFile = URL(string: "/Users/victor/Desktop/iOSiFoodie/iOSiFoodie/Assets.xcassets/descarga")!

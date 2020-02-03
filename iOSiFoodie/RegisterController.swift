@@ -8,13 +8,16 @@ var user = User()
 
 class RegisterController: UIViewController {
     
-    
-    @IBOutlet weak var nameInput: UITextField!
-    @IBOutlet weak var passwordInput: UITextField!
-    @IBOutlet weak var emailInput: UITextField!
-    
     @IBOutlet weak var userNameInput: UITextField!
-    @IBOutlet weak var photoInput: UIImageView!
+    @IBOutlet weak var emailInput: UITextField!
+    @IBOutlet weak var passwordInput: UITextField!
+    @IBOutlet weak var password2Input: UITextField!
+    
+    @IBOutlet weak var badUser: UILabel!
+    @IBOutlet weak var badEmail: UILabel!
+    @IBOutlet weak var emptyEmail: UILabel!
+    @IBOutlet weak var emptyPass: UILabel!
+    
     
     override func viewDidLoad() {
         
@@ -27,50 +30,79 @@ class RegisterController: UIViewController {
         }
     }
     
+    func isValidEmail(string: String) -> Bool {
+        let emailReg = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailReg)
+        return emailTest.evaluate(with: string)
+    }
+    
     @IBAction func register(_ sender: Any) {
 
+        print(isValidEmail(string: emailInput.text!))
 
         var errores = false
 
-        if(nameInput.text!.isEmpty){
+        if(userNameInput.text!.isEmpty){
             errores = true
+            badUser.isHidden = false
         }else{
-            user.name = nameInput.text!
+            badUser.isHidden = true
+            user.userName = userNameInput.text!
         }
 
         if(emailInput.text!.isEmpty){
+            print("NOOOOOOOOO")
             errores = true
-        }else{
+            emptyEmail.isHidden = false
+            badEmail.isHidden = true
+        } else if !(isValidEmail(string: emailInput.text!)){
+            errores = true
+            emptyEmail.isHidden = true
+            badEmail.isHidden = false
+        } else {
+            print("estefaniaaaaaaa")
+            emptyEmail.isHidden = true
+            badEmail.isHidden = true
             user.email = emailInput.text!
         }
 
-        if(passwordInput.text!.isEmpty){
+        if passwordInput.text!.isEmpty || password2Input.text!.isEmpty{
             errores = true
-        }else{
+            emptyPass.isHidden = false
+        }else if passwordInput.text! == password2Input.text!{
             user.password = passwordInput.text!
-        }
-
-
-        if(!errores){
-            
-            user.name = nameInput.text!
-            user.email = emailInput.text!
-            user.userName = userNameInput.text!
-            user.password = passwordInput.text!
-            user.photo =  "descarga"
-            //user.imageProfile = photoInput.image.
-            postUser(user: user)
-            // crear usuario en la api
-            print("nombre: ", user.name
-                + " Email: ", user.email
-                + " user_name: ", user.userName
-                + " Password: ", user.password
-                + " photo: ",  user.photo)
-        }else{
+            emptyPass.isHidden = true
+        } else {
             let alert1 = UIAlertAction(title:"Cerrar", style: UIAlertAction.Style.default) {
                 (error) in
             }
-            let alert = UIAlertController(title: "Error", message:
+            let alert = UIAlertController(title: "Aviso", message:
+                "Las contraseñas no coinciden", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(alert1)
+            self.present(alert, animated: true, completion: nil)
+            emptyPass.isHidden = true
+        }
+        
+        if(!errores){
+            
+            user.userName = userNameInput.text!
+            user.email = emailInput.text!
+            user.password = passwordInput.text!
+            //user.imageProfile = photoInput.image.
+            postUser(user: user)
+            self.performSegue(withIdentifier: "registerSuccess", sender: nil)
+            
+            // crear usuario en la api
+            print("UserName: ", user.userName
+                + " Email: ", user.email
+                + " Password: ", user.password
+                + " Password2: ", user.password2)
+        }else{
+            
+            let alert1 = UIAlertAction(title:"Cerrar", style: UIAlertAction.Style.default) {
+                (error) in
+            }
+            let alert = UIAlertController(title: "Aviso", message:
                 "Hay uno o varios campos vacíos", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(alert1)
             self.present(alert, animated: true, completion: nil)
@@ -78,16 +110,26 @@ class RegisterController: UIViewController {
     }
 
     func postUser(user: User) {
-        let url = URL(string: "http://localhost:8888/APIiFoodie/public/index.php/api/register")
-        let json = ["name": user.name,
-                    "user_name": user.userName,
+        print("Username: ", user.userName)
+        print("Email: ", user.email)
+        print("Password: ", user.password)
+        let url = URL(string: "http://localhost:8888/Ruben/iFoodie/public/index.php/api/store")
+        let json = ["user_name": user.userName,
                     "email": user.email,
-                    "password": user.password,
-                    "photo": user.photo
+                    "password": user.password
             ] as [String : Any]
 
         Alamofire.request(url!, method: .post, parameters: json, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             print(response.response!.statusCode)
+            if response.response!.statusCode != 201 {
+                let alert1 = UIAlertAction(title:"Cerrar", style: UIAlertAction.Style.default) {
+                    (error) in
+                }
+                let alert = UIAlertController(title: "Aviso", message:
+                    "Informacion Incorrecta", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(alert1)
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
 }

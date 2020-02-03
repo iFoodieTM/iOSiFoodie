@@ -7,6 +7,12 @@ class LoginController: UIViewController {
     
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
+    
+    @IBOutlet weak var emailEmpty: UILabel!
+    @IBOutlet weak var passEmpty: UILabel!
+    @IBOutlet weak var emailBad: UILabel!
+    
+    
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
         super.viewDidLoad()
@@ -14,36 +20,44 @@ class LoginController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func isValidEmail(string: String) -> Bool {
+        let emailReg = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailReg)
+        return emailTest.evaluate(with: string)
+    }
     
     @IBAction func login(_ sender: Any) {
         var errores = false
         if(emailInput.text!.isEmpty){
+            print("NOOOOOOOOO")
             errores = true
-        }else{
+            emailEmpty.isHidden = false
+            emailBad.isHidden = true
+        } else if !(isValidEmail(string: emailInput.text!)){
+            errores = true
+            emailEmpty.isHidden = true
+            emailBad.isHidden = false
+        } else {
+            emailEmpty.isHidden = true
+            emailBad.isHidden = true
             user.email = emailInput.text!
         }
         
         if(passwordInput.text!.isEmpty){
             errores = true
+            passEmpty.isHidden = false
         }else{
             user.password = passwordInput.text!
+            passEmpty.isHidden = true
         }
         
         if(!errores){
             postUser(user: user)
-        }else{
-            let alert1 = UIAlertAction(title:"Cerrar", style: UIAlertAction.Style.default) {
-                (error) in
-            }
-            let alert = UIAlertController(title: "Error", message:
-                "Hay uno o varios campos vacíos", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(alert1)
-            self.present(alert, animated: true, completion: nil)
         }
         
     }
     func postUser(user: User) {
-        let url = URL(string: "http://localhost:8888/APIBienestapp/public/index.php/api/login")
+        let url = URL(string: "http://localhost:8888/Ruben/iFoodie/public/index.php/api/login")
         let json = ["email": user.email,
                     "password": user.password]
         
@@ -57,7 +71,7 @@ class LoginController: UIViewController {
                 (error) in
             }
             let alert = UIAlertController(title: "Error", message:
-                "Informacion Incorrecta", preferredStyle: UIAlertController.Style.alert)
+                "Email o contraseña incorrectos", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(alert1)
             self.present(alert, animated: true, completion: nil)
         }
