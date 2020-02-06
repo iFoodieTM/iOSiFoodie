@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5757C4F423DA2A870079EDFB /* RecoverPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757C4F323DA2A870079EDFB /* RecoverPasswordController.swift */; };
-		5757C4F623DA314B0079EDFB /* FakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757C4F523DA314B0079EDFB /* FakeController.swift */; };
 		577BE4BE23D7126F00371F30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4BD23D7126F00371F30 /* AppDelegate.swift */; };
 		577BE4C023D7126F00371F30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4BF23D7126F00371F30 /* ViewController.swift */; };
 		577BE4C323D7126F00371F30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 577BE4C123D7126F00371F30 /* Main.storyboard */; };
@@ -16,14 +15,16 @@
 		577BE4C823D7127000371F30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 577BE4C623D7127000371F30 /* LaunchScreen.storyboard */; };
 		577BE4D023D7168C00371F30 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4CF23D7168C00371F30 /* LoginController.swift */; };
 		577BE4D223D71EA900371F30 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4D123D71EA900371F30 /* User.swift */; };
-		577BE4D423D7222C00371F30 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4D323D7222C00371F30 /* RegisterController.swift */; };
+		577BE4D423D7222C00371F30 /* RegisterUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4D323D7222C00371F30 /* RegisterUserController.swift */; };
+		7F65E63523E9A0610076C24F /* AddRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65E63423E9A0610076C24F /* AddRecipe.swift */; };
+		7FA7080823EAD5BF0092D4DD /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA7080723EAD5BF0092D4DD /* HomeController.swift */; };
+		7FC6CC1523EC3C85008385A3 /* RegisterResController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC6CC1423EC3C85008385A3 /* RegisterResController.swift */; };
 		9F6608A9E9F9B5E916DFFF04 /* Pods_iOSiFoodie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED0609354FC9901259C3053 /* Pods_iOSiFoodie.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0ED0609354FC9901259C3053 /* Pods_iOSiFoodie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSiFoodie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5757C4F323DA2A870079EDFB /* RecoverPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordController.swift; sourceTree = "<group>"; };
-		5757C4F523DA314B0079EDFB /* FakeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeController.swift; sourceTree = "<group>"; };
 		577BE4BA23D7126F00371F30 /* iOSiFoodie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSiFoodie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		577BE4BD23D7126F00371F30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		577BE4BF23D7126F00371F30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,8 +34,11 @@
 		577BE4C923D7127000371F30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		577BE4CF23D7168C00371F30 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		577BE4D123D71EA900371F30 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		577BE4D323D7222C00371F30 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		577BE4D323D7222C00371F30 /* RegisterUserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserController.swift; sourceTree = "<group>"; };
 		6068B1AC25094867BAA2F1F2 /* Pods-iOSiFoodie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSiFoodie.release.xcconfig"; path = "Target Support Files/Pods-iOSiFoodie/Pods-iOSiFoodie.release.xcconfig"; sourceTree = "<group>"; };
+		7F65E63423E9A0610076C24F /* AddRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipe.swift; sourceTree = "<group>"; };
+		7FA7080723EAD5BF0092D4DD /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		7FC6CC1423EC3C85008385A3 /* RegisterResController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResController.swift; sourceTree = "<group>"; };
 		982C4E6D7B46ECB2A7D1BCEC /* Pods-iOSiFoodie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSiFoodie.debug.xcconfig"; path = "Target Support Files/Pods-iOSiFoodie/Pods-iOSiFoodie.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,11 +89,13 @@
 				5757C4F323DA2A870079EDFB /* RecoverPasswordController.swift */,
 				577BE4D123D71EA900371F30 /* User.swift */,
 				577BE4CF23D7168C00371F30 /* LoginController.swift */,
-				5757C4F523DA314B0079EDFB /* FakeController.swift */,
-				577BE4D323D7222C00371F30 /* RegisterController.swift */,
+				577BE4D323D7222C00371F30 /* RegisterUserController.swift */,
 				577BE4C423D7127000371F30 /* Assets.xcassets */,
 				577BE4C623D7127000371F30 /* LaunchScreen.storyboard */,
 				577BE4C923D7127000371F30 /* Info.plist */,
+				7F65E63423E9A0610076C24F /* AddRecipe.swift */,
+				7FA7080723EAD5BF0092D4DD /* HomeController.swift */,
+				7FC6CC1423EC3C85008385A3 /* RegisterResController.swift */,
 			);
 			path = iOSiFoodie;
 			sourceTree = "<group>";
@@ -218,11 +224,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				577BE4D423D7222C00371F30 /* RegisterController.swift in Sources */,
+				577BE4D423D7222C00371F30 /* RegisterUserController.swift in Sources */,
 				577BE4D223D71EA900371F30 /* User.swift in Sources */,
 				577BE4C023D7126F00371F30 /* ViewController.swift in Sources */,
+				7F65E63523E9A0610076C24F /* AddRecipe.swift in Sources */,
+				7FA7080823EAD5BF0092D4DD /* HomeController.swift in Sources */,
+				7FC6CC1523EC3C85008385A3 /* RegisterResController.swift in Sources */,
 				5757C4F423DA2A870079EDFB /* RecoverPasswordController.swift in Sources */,
-				5757C4F623DA314B0079EDFB /* FakeController.swift in Sources */,
 				577BE4D023D7168C00371F30 /* LoginController.swift in Sources */,
 				577BE4BE23D7126F00371F30 /* AppDelegate.swift in Sources */,
 			);
