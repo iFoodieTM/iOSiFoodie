@@ -1,9 +1,7 @@
 import Alamofire
 import UIKit
 
-
 class LoginController: UIViewController {
-    
     
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
@@ -57,7 +55,7 @@ class LoginController: UIViewController {
         
     }
     func postUser(user: User) {
-        let url = URL(string: "http://localhost:8888/Ruben/iFoodie/public/index.php/api/login")
+        let url = URL(string: "http://localhost:8888/iFoodieAPI/public/index.php/api/login")
         let json = ["email": user.email,
                     "password": user.password]
         
@@ -75,7 +73,6 @@ class LoginController: UIViewController {
             alert.addAction(alert1)
             self.present(alert, animated: true, completion: nil)
         }
+      }
     }
-    }
-    
 }

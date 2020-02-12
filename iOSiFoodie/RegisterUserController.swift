@@ -113,7 +113,9 @@ class RegisterUserController: UIViewController {
         print("Username: ", user.userName)
         print("Email: ", user.email)
         print("Password: ", user.password)
-        let url = URL(string: "http://localhost:8888/Ruben/iFoodie/public/index.php/api/store")
+        
+        let url = URL(string: "http://localhost:8888/iFoodieAPI/public/index.php/api/users")
+        
         let json = ["user_name": user.userName,
                     "email": user.email,
                     "password": user.password

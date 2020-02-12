@@ -1,11 +1,3 @@
-//
-//  AddRecipe.swift
-//  iOSiFoodie
-//
-//  Created by alumnos on 04/02/2020.
-//  Copyright © 2020 VictorGarcia. All rights reserved.
-//
-
 import UIKit
 
 class AddRecipe : UIViewController {
