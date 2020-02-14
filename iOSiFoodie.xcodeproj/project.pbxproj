@@ -16,6 +16,8 @@
 		577BE4D023D7168C00371F30 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4CF23D7168C00371F30 /* LoginController.swift */; };
 		577BE4D223D71EA900371F30 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4D123D71EA900371F30 /* User.swift */; };
 		577BE4D423D7222C00371F30 /* RegisterUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4D323D7222C00371F30 /* RegisterUserController.swift */; };
+		7F30CBE623F5649F001CB4F8 /* StepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F30CBE523F5649F001CB4F8 /* StepCell.swift */; };
+		7F3A017223F426640049F211 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3A017123F426640049F211 /* IngredientCell.swift */; };
 		7F65E63523E9A0610076C24F /* AddRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65E63423E9A0610076C24F /* AddRecipe.swift */; };
 		7FA7080823EAD5BF0092D4DD /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA7080723EAD5BF0092D4DD /* HomeController.swift */; };
 		7FC6CC1523EC3C85008385A3 /* RegisterResController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC6CC1423EC3C85008385A3 /* RegisterResController.swift */; };
@@ -36,6 +38,8 @@
 		577BE4D123D71EA900371F30 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		577BE4D323D7222C00371F30 /* RegisterUserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserController.swift; sourceTree = "<group>"; };
 		6068B1AC25094867BAA2F1F2 /* Pods-iOSiFoodie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSiFoodie.release.xcconfig"; path = "Target Support Files/Pods-iOSiFoodie/Pods-iOSiFoodie.release.xcconfig"; sourceTree = "<group>"; };
+		7F30CBE523F5649F001CB4F8 /* StepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCell.swift; sourceTree = "<group>"; };
+		7F3A017123F426640049F211 /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
 		7F65E63423E9A0610076C24F /* AddRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipe.swift; sourceTree = "<group>"; };
 		7FA7080723EAD5BF0092D4DD /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		7FC6CC1423EC3C85008385A3 /* RegisterResController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResController.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 				7F65E63423E9A0610076C24F /* AddRecipe.swift */,
 				7FA7080723EAD5BF0092D4DD /* HomeController.swift */,
 				7FC6CC1423EC3C85008385A3 /* RegisterResController.swift */,
+				7F3A017123F426640049F211 /* IngredientCell.swift */,
+				7F30CBE523F5649F001CB4F8 /* StepCell.swift */,
 			);
 			path = iOSiFoodie;
 			sourceTree = "<group>";
@@ -230,8 +236,10 @@
 				7F65E63523E9A0610076C24F /* AddRecipe.swift in Sources */,
 				7FA7080823EAD5BF0092D4DD /* HomeController.swift in Sources */,
 				7FC6CC1523EC3C85008385A3 /* RegisterResController.swift in Sources */,
+				7F3A017223F426640049F211 /* IngredientCell.swift in Sources */,
 				5757C4F423DA2A870079EDFB /* RecoverPasswordController.swift in Sources */,
 				577BE4D023D7168C00371F30 /* LoginController.swift in Sources */,
+				7F30CBE623F5649F001CB4F8 /* StepCell.swift in Sources */,
 				577BE4BE23D7126F00371F30 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
