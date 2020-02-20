@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0724CCE423FC56D50089FB8F /* ViewImagePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0724CCE323FC56D50089FB8F /* ViewImagePopUp.swift */; };
+		0724CCE623FDB23D0089FB8F /* ViewRecipePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0724CCE523FDB23D0089FB8F /* ViewRecipePopUp.swift */; };
 		5757C4F423DA2A870079EDFB /* RecoverPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757C4F323DA2A870079EDFB /* RecoverPasswordController.swift */; };
 		577BE4BE23D7126F00371F30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4BD23D7126F00371F30 /* AppDelegate.swift */; };
 		577BE4C023D7126F00371F30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4BF23D7126F00371F30 /* ViewController.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0724CCE323FC56D50089FB8F /* ViewImagePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewImagePopUp.swift; sourceTree = "<group>"; };
+		0724CCE523FDB23D0089FB8F /* ViewRecipePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRecipePopUp.swift; sourceTree = "<group>"; };
 		0ED0609354FC9901259C3053 /* Pods_iOSiFoodie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSiFoodie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5757C4F323DA2A870079EDFB /* RecoverPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordController.swift; sourceTree = "<group>"; };
 		577BE4BA23D7126F00371F30 /* iOSiFoodie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSiFoodie.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +106,8 @@
 				7FC6CC1423EC3C85008385A3 /* RegisterResController.swift */,
 				7F3A017123F426640049F211 /* IngredientCell.swift */,
 				7F30CBE523F5649F001CB4F8 /* StepCell.swift */,
+				0724CCE323FC56D50089FB8F /* ViewImagePopUp.swift */,
+				0724CCE523FDB23D0089FB8F /* ViewRecipePopUp.swift */,
 			);
 			path = iOSiFoodie;
 			sourceTree = "<group>";
@@ -235,6 +241,8 @@
 				577BE4C023D7126F00371F30 /* ViewController.swift in Sources */,
 				7F65E63523E9A0610076C24F /* AddRecipe.swift in Sources */,
 				7FA7080823EAD5BF0092D4DD /* HomeController.swift in Sources */,
+				0724CCE423FC56D50089FB8F /* ViewImagePopUp.swift in Sources */,
+				0724CCE623FDB23D0089FB8F /* ViewRecipePopUp.swift in Sources */,
 				7FC6CC1523EC3C85008385A3 /* RegisterResController.swift in Sources */,
 				7F3A017223F426640049F211 /* IngredientCell.swift in Sources */,
 				5757C4F423DA2A870079EDFB /* RecoverPasswordController.swift in Sources */,

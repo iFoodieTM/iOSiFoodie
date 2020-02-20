@@ -157,7 +157,7 @@ open class ImageDownloader {
         let cacheDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
         let imageDownloaderPath = "org.alamofire.imagedownloader"
 
-        #if targetEnvironment(macCatalyst)
+        #if targetEnvironment(macabi)
         return URLCache(
             memoryCapacity: memoryCapacity,
             diskCapacity: diskCapacity,

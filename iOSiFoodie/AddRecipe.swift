@@ -1,19 +1,133 @@
 import UIKit
+import AlamofireImage
+import Alamofire
 
-class AddRecipe : UIViewController, UITableViewDelegate, UITableViewDataSource {
+var Token = ""
+
+class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
     @IBOutlet weak var titleRecipe: UITextField!
     @IBOutlet weak var ingredient: UITextField!
-    @IBOutlet weak var ingredientTableView: UITableView!
     @IBOutlet weak var step: UITextField!
+    @IBOutlet weak var ingredientTableView: UITableView!
     @IBOutlet weak var stepsTableView: UITableView!
     
+    @IBOutlet weak var viewRecipeButton: UIButton!
+    @IBOutlet weak var viewPhotoButton: UIButton!
+    @IBOutlet weak var viewVideoButton: UIButton!
+    @IBOutlet weak var deletePhotoButton: UIButton!
+    @IBOutlet weak var deleteVideoButton: UIButton!
+    
+    
+    var imagePicker : UIImagePickerController?
     var ingredientsArray = [String]()
     var stepsArray = [String]()
+
+    var uploadedImage : UIImage!
+    
+    @IBAction func deleteUploadedButton(_ sender: Any) {
+        uploadedImage = nil
+        let alert = UIAlertController(title: "Imagen eliminada", message: "Puedes volver a elegir una imagen para tu receta", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        viewPhotoButton.isHidden = true
+        deletePhotoButton.isHidden = true
+    }
+    
+    @IBAction func uploadPhoto(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Elegir imagen", message: "Los usuarios podrán verla al entrar a tu receta", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Cámara", style: .default, handler: { _ in
+            self.openCamera()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Galería", style: .default, handler: { _ in
+            self.openGallery()
+        }))
+        
+        alert.addAction(UIAlertAction.init(title: "Cancelar", style: .cancel, handler: nil))
+
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func openCamera(){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = (self as UIImagePickerControllerDelegate & UINavigationControllerDelegate)
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        else{
+            let alert  = UIAlertController(title: "Error", message: "Tu dispositivo no tiene cámara o tiene un fallo", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func openGallery(){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
+            imagePicker = UIImagePickerController()
+            imagePicker!.delegate = (self as UIImagePickerControllerDelegate & UINavigationControllerDelegate)
+            imagePicker!.allowsEditing = true
+            imagePicker!.sourceType = UIImagePickerController.SourceType.photoLibrary
+            self.present(imagePicker!, animated: true, completion: nil)
+        }
+        else{
+            let alert  = UIAlertController(title: "Error", message: "No tienes permisos para acceder a la Galería", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true, completion: nil)
+        uploadedImage = info[.originalImage] as? UIImage
+        print("La imagen es: " , uploadedImage!)
+        viewPhotoButton.isHidden = false
+        deletePhotoButton.isHidden = false
+    }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        uploadedImage = image
+        print("LA IMAGEN ES: " , image)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "viewRecipePopUp" {
+            let RecipePopUp = segue.destination as! ViewRecipePopUp //ViewController al que pasar la información
+            RecipePopUp.titleRecipe = titleRecipe.text! // variable del viewB que recibe lo que le envias de viewA
+            RecipePopUp.ingredients = ingredientsArray
+            RecipePopUp.steps = stepsArray
+            RecipePopUp.image = uploadedImage
+        }
+        if segue.identifier == "viewImagePopUp" {
+            let ImagePopUp = segue.destination as! ViewImagePopUp
+            ImagePopUp.image = uploadedImage
+        }
+    }
+
+    @IBAction func uploadVideo(_ sender: Any) {
+        let alert = UIAlertController(title: "Elegir vídeo", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Cámara", style: .default, handler: { _ in
+            self.openCamera()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Galería", style: .default, handler: { _ in
+            self.openGallery()
+        }))
+        
+        alert.addAction(UIAlertAction.init(title: "Cancelar", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func saveRecipe(_ sender: Any) {
+        postRecipe()
+    }
     
     @IBAction func addIngredient(_ sender: Any) {
         let ingredientRecipe = ingredient.text
-        if ingredientRecipe != ""{ //Comprobar que el campo no esté vacío
+        if ingredientRecipe != "" && !(ingredientRecipe?.contains("  "))!{ //Comprobar que el campo no esté vacío
             ingredientsArray.append(ingredientRecipe!)
             ingredientTableView.reloadData()
             print(ingredientsArray)
@@ -22,9 +136,11 @@ class AddRecipe : UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func removeIngredient(_ sender: UIButton) {
+        print(sender.tag)
         ingredientsArray.remove(at: sender.tag) //Eliminar elemento del Array
         let indexIngredient = IndexPath(item: sender.tag, section: 0) //Índice del elemento
         ingredientTableView.deleteRows(at: [indexIngredient], with: .right) //Eliminar la celda con animación
+        print(ingredientsArray)
     }
     
     @IBAction func addStep(_ sender: Any) {
@@ -38,17 +154,35 @@ class AddRecipe : UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func removeStep(_ sender: UIButton) {
+        print(sender.tag)
         stepsArray.remove(at: sender.tag)
         let indexStep = IndexPath(item: sender.tag, section: 0)
         stepsTableView.deleteRows(at: [indexStep], with: .right)
+        print(stepsArray)
+    }
+    
+    public func activarboton(){
+        if !titleRecipe.text!.isEmpty && !ingredientsArray.isEmpty && !stepsArray.isEmpty{
+            viewRecipeButton.isHidden = false
+        }else{
+            viewRecipeButton.isHidden = true
+        }
+    }
+    
+    @IBAction func titleChanged(_ sender: UITextField) {
+        activarboton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       //
+        
     }
     
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
         ingredientTableView.backgroundColor = UIColor(white: 1, alpha: 0) //Fondo del TableView transparente
         stepsTableView.backgroundColor = UIColor(white: 1, alpha: 0)
-        
         ingredientTableView.delegate = self
         ingredientTableView.dataSource = self
         stepsTableView.delegate = self
@@ -80,7 +214,8 @@ class AddRecipe : UIViewController, UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath) as! IngredientCell
             cell.backgroundColor = UIColor(white: 1, alpha: 0) //Celda transparente
             
-            cell.ingredientName.text = ingredientsArray[indexPath.row]
+            cell.ingredientName.text = ingredientsArray[indexPath.row] //Mostrar el ingrediente escrito
+            cell.deleteIngredientButton.tag = indexPath.row
             return cell
         }
         
@@ -90,11 +225,33 @@ class AddRecipe : UIViewController, UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = UIColor(white: 1, alpha: 0) //Celda transparente
             
             let numberStepOrder = String(indexPath.row + 1) //Convertir el indexPath a String
-            cell.stepOrder.text = numberStepOrder + "."
-            cell.stepInformation.text = stepsArray[indexPath.row]
+            cell.stepOrder.text = numberStepOrder + "." //Mostrar el número del paso
+            cell.stepInformation.text = stepsArray[indexPath.row] //Mostrar la información del paso escrito
+            cell.deleteStepButton.tag = indexPath.row
             return cell
         }
         return cell
+    }
+    
+    public func postRecipe(){
+        let url = ""
+        
+        let json = ["name" : titleRecipe!, "ingredients" : ingredientsArray, "steps" : stepsArray] as [String : Any]
+        
+        let header = ["Authorization": Token]
+        
+        Alamofire.request(url, method: .post, parameters: json, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+            
+            let statusCode = response.response?.statusCode
+            
+            if statusCode == 200{
+                
+            }else if statusCode == 401{
+                
+            }else{
+                print("Peticion incorrecta")
+            }
+        }
     }
 }
     
