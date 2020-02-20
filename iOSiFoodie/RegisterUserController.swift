@@ -4,8 +4,6 @@ import UIKit
 
 var user = User()
 
-
-
 class RegisterUserController: UIViewController {
     
     @IBOutlet weak var userNameInput: UITextField!
@@ -123,12 +121,14 @@ class RegisterUserController: UIViewController {
 
         Alamofire.request(url!, method: .post, parameters: json, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             print(response.response!.statusCode)
-            if response.response!.statusCode != 201 {
+            if response.response!.statusCode == 201 {
+                print("Registrado")
+            }else{
                 let alert1 = UIAlertAction(title:"Cerrar", style: UIAlertAction.Style.default) {
                     (error) in
                 }
                 let alert = UIAlertController(title: "Aviso", message:
-                    "Informacion Incorrecta", preferredStyle: UIAlertController.Style.alert)
+                    "Informacion incorrecta", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(alert1)
                 self.present(alert, animated: true, completion: nil)
             }

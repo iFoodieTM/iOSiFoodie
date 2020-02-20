@@ -2,8 +2,6 @@ import UIKit
 import AlamofireImage
 import Alamofire
 
-var Token = ""
-
 class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
     @IBOutlet weak var titleRecipe: UITextField!
@@ -18,12 +16,31 @@ class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     @IBOutlet weak var deletePhotoButton: UIButton!
     @IBOutlet weak var deleteVideoButton: UIButton!
     
+    var descriptionRecipe = "Esta receta es muy saludable"
     
     var imagePicker : UIImagePickerController?
     var ingredientsArray = [String]()
     var stepsArray = [String]()
 
     var uploadedImage : UIImage!
+    
+    var categorias = ["Carne"]
+    
+    var tiempo = 45
+    
+    var dificultad = 4
+    
+    public func showViewRecipeButton(){
+        if !titleRecipe.text!.isEmpty && !ingredientsArray.isEmpty && !stepsArray.isEmpty{
+            viewRecipeButton.isHidden = false
+        }else{
+            viewRecipeButton.isHidden = true
+        }
+    }
+    
+    @IBAction func titleChanged(_ sender: UITextField) {
+        showViewRecipeButton()
+    }
     
     @IBAction func deleteUploadedButton(_ sender: Any) {
         uploadedImage = nil
@@ -86,11 +103,6 @@ class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         viewPhotoButton.isHidden = false
         deletePhotoButton.isHidden = false
     }
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        uploadedImage = image
-        print("LA IMAGEN ES: " , image)
-        dismiss(animated: true, completion: nil)
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "viewRecipePopUp" {
@@ -132,6 +144,7 @@ class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             ingredientTableView.reloadData()
             print(ingredientsArray)
             ingredient.text = "" //Reiniciar el campo de texto
+            showViewRecipeButton()
         }
     }
     
@@ -141,6 +154,7 @@ class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         let indexIngredient = IndexPath(item: sender.tag, section: 0) //Índice del elemento
         ingredientTableView.deleteRows(at: [indexIngredient], with: .right) //Eliminar la celda con animación
         print(ingredientsArray)
+        showViewRecipeButton()
     }
     
     @IBAction func addStep(_ sender: Any) {
@@ -150,6 +164,7 @@ class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             stepsTableView.reloadData()
             print(stepsArray)
             step.text = ""
+            showViewRecipeButton()
         }
     }
     
@@ -159,23 +174,8 @@ class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         let indexStep = IndexPath(item: sender.tag, section: 0)
         stepsTableView.deleteRows(at: [indexStep], with: .right)
         print(stepsArray)
-    }
-    
-    public func activarboton(){
-        if !titleRecipe.text!.isEmpty && !ingredientsArray.isEmpty && !stepsArray.isEmpty{
-            viewRecipeButton.isHidden = false
-        }else{
-            viewRecipeButton.isHidden = true
-        }
-    }
-    
-    @IBAction func titleChanged(_ sender: UITextField) {
-        activarboton()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-       //
-        
+        showViewRecipeButton()
+        showViewRecipeButton()
     }
     
     override func viewDidLoad() {
@@ -234,18 +234,33 @@ class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
     public func postRecipe(){
-        let url = ""
+        let url = URL(string: "http://localhost:8888/iFoodieAPI/public/index.php/api/recipes")
         
-        let json = ["name" : titleRecipe!, "ingredients" : ingredientsArray, "steps" : stepsArray] as [String : Any]
+        let json = ["name" : titleRecipe.text!,
+                    "ingredients" : ingredientsArray,
+                    "steps" : stepsArray,
+                    "categories" : categorias,
+                    "difficulty" : dificultad,
+                    "time" : tiempo,
+                    "description": descriptionRecipe] as [String : Any]
         
-        let header = ["Authorization": Token]
+        print (json)
         
-        Alamofire.request(url, method: .post, parameters: json, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+        print ("token", Token)
+        
+        let header = ["Authentication": Token]
+        
+        Alamofire.request(url!, method: .post, parameters: json, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
             
             let statusCode = response.response?.statusCode
             
+            print (response)
+            print (statusCode!)
+            
             if statusCode == 200{
-                
+                let alert = UIAlertController(title: "Receta subida", message: "Tu nueva receta está disponible para que otros usuarios puedan verla", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }else if statusCode == 401{
                 
             }else{

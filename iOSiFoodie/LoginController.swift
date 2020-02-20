@@ -1,5 +1,6 @@
 import Alamofire
 import UIKit
+var Token = ""
 
 class LoginController: UIViewController {
     
@@ -60,8 +61,10 @@ class LoginController: UIViewController {
                     "password": user.password]
         
         Alamofire.request(url!, method: .post, parameters: json, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-            print(response)
             if (response.response!.statusCode == 201) {
+                let json = response.result.value as! [String:Any]
+                Token = json["token"] as! String
+                print(Token)
             self.performSegue(withIdentifier: "LoginSuccess", sender: nil)
             }
             if (response.response!.statusCode == 401)  {
