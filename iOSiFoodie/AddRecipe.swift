@@ -135,7 +135,45 @@ class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     @IBAction func saveRecipe(_ sender: Any) {
         postRecipe()
+        self.ingredientsArray.removeAll()
+        self.stepsArray.removeAll()
+        self.stepsTableView.reloadData()
+        self.ingredientTableView.reloadData()
+        self.titleRecipe.text! = ""
+        viewRecipeButton.isHidden = true
+        viewPhotoButton.isHidden = true
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     @IBAction func addIngredient(_ sender: Any) {
         let ingredientRecipe = ingredient.text
@@ -234,7 +272,7 @@ class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
     public func postRecipe(){
-        let url = URL(string: "http://localhost:8888/iFoodieAPI/public/index.php/api/recipes")
+        let url = URL(string: "http://localhost:8888/APIiFoodie/public/index.php/api/recipes")
         
         let json = ["name" : titleRecipe.text!,
                     "ingredients" : ingredientsArray,
@@ -248,22 +286,31 @@ class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         print ("token", Token)
         
+        let Token = UserDefaults.standard.string(forKey: "token")
+        
         let header = ["Authentication": Token]
         
-        Alamofire.request(url!, method: .post, parameters: json, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+        Alamofire.request(url!, method: .post, parameters: json, encoding: JSONEncoding.default, headers: header as! HTTPHeaders).responseJSON { (response) in
             
             let statusCode = response.response?.statusCode
             
-            print (response)
-            print (statusCode!)
+            print(response)
+            print(statusCode!)
             
             if statusCode == 200{
                 let alert = UIAlertController(title: "Receta subida", message: "Tu nueva receta está disponible para que otros usuarios puedan verla", preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-            }else if statusCode == 401{
                 
-            }else{
+            }else if statusCode == 500{
+                let alert = UIAlertController(title: "Aviso", message: "Tienes que rellenar los campos", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
+            }else if statusCode == 401{
+                let alert = UIAlertController(title: "Aviso", message: "Tienes que rellenar los campos", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
                 print("Peticion incorrecta")
             }
         }

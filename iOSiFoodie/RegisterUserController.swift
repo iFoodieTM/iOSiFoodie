@@ -88,13 +88,12 @@ class RegisterUserController: UIViewController {
             user.password = passwordInput.text!
             //user.imageProfile = photoInput.image.
             postUser(user: user)
-            self.performSegue(withIdentifier: "RegisterSuccess", sender: nil)
             
             // crear usuario en la api
             print("UserName: ", user.userName
-                + " Email: ", user.email
-                + " Password: ", user.password
-                + " Password2: ", user.password2)
+                + "Email: ", user.email
+                + "Password: ", user.password
+                + "Password2: ", user.password2)
         }else{
             
             let alert1 = UIAlertAction(title:"Cerrar", style: UIAlertAction.Style.default) {
@@ -112,21 +111,27 @@ class RegisterUserController: UIViewController {
         print("Email: ", user.email)
         print("Password: ", user.password)
         
-        let url = URL(string: "http://localhost:8888/iFoodieAPI/public/index.php/api/users")
+        let url = URL(string: "http://localhost:8888/APIiFoodie/public/index.php/api/store")
         
         let json = ["user_name": user.userName,
                     "email": user.email,
-                    "password": user.password
-            ] as [String : Any]
+                    "password": user.password] as [String : Any]
 
         Alamofire.request(url!, method: .post, parameters: json, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             print(response.response!.statusCode)
             if response.response!.statusCode == 201 {
-                print("Registrado")
+                
+                let json = response.result.value as! [String:Any]
+                Token = json["token"] as! String
+                UserDefaults.standard.set(Token, forKey: "token")
+                self.performSegue(withIdentifier: "RegisterSuccess", sender: nil)
+                print(Token)
             }else{
+                
                 let alert1 = UIAlertAction(title:"Cerrar", style: UIAlertAction.Style.default) {
                     (error) in
                 }
+                
                 let alert = UIAlertController(title: "Aviso", message:
                     "Informacion incorrecta", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(alert1)

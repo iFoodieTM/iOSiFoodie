@@ -11,6 +11,7 @@
 		0724CCE623FDB23D0089FB8F /* ViewRecipePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0724CCE523FDB23D0089FB8F /* ViewRecipePopUp.swift */; };
 		0724CCEA23FF18D50089FB8F /* pruebaScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0724CCE923FF18D50089FB8F /* pruebaScrollView.swift */; };
 		5757C4F423DA2A870079EDFB /* RecoverPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5757C4F323DA2A870079EDFB /* RecoverPasswordController.swift */; };
+		576457F52403F6A2007DCED8 /* SplashController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576457F42403F6A2007DCED8 /* SplashController.swift */; };
 		577BE4BE23D7126F00371F30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4BD23D7126F00371F30 /* AppDelegate.swift */; };
 		577BE4C023D7126F00371F30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4BF23D7126F00371F30 /* ViewController.swift */; };
 		577BE4C323D7126F00371F30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 577BE4C123D7126F00371F30 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		0724CCE923FF18D50089FB8F /* pruebaScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pruebaScrollView.swift; sourceTree = "<group>"; };
 		0ED0609354FC9901259C3053 /* Pods_iOSiFoodie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSiFoodie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5757C4F323DA2A870079EDFB /* RecoverPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordController.swift; sourceTree = "<group>"; };
+		576457F42403F6A2007DCED8 /* SplashController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashController.swift; sourceTree = "<group>"; };
 		577BE4BA23D7126F00371F30 /* iOSiFoodie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSiFoodie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		577BE4BD23D7126F00371F30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		577BE4BF23D7126F00371F30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				577BE4BD23D7126F00371F30 /* AppDelegate.swift */,
 				577BE4BF23D7126F00371F30 /* ViewController.swift */,
 				577BE4C123D7126F00371F30 /* Main.storyboard */,
+				576457F42403F6A2007DCED8 /* SplashController.swift */,
 				5757C4F323DA2A870079EDFB /* RecoverPasswordController.swift */,
 				577BE4D123D71EA900371F30 /* User.swift */,
 				577BE4CF23D7168C00371F30 /* LoginController.swift */,
@@ -253,6 +256,7 @@
 				577BE4D023D7168C00371F30 /* LoginController.swift in Sources */,
 				7F30CBE623F5649F001CB4F8 /* StepCell.swift in Sources */,
 				577BE4BE23D7126F00371F30 /* AppDelegate.swift in Sources */,
+				576457F52403F6A2007DCED8 /* SplashController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +404,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D7ERVUZL2M;
 				INFOPLIST_FILE = iOSiFoodie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -418,6 +423,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D7ERVUZL2M;
 				INFOPLIST_FILE = iOSiFoodie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

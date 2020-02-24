@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="drY-Aj-8vB">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -170,6 +170,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XNY-nW-WPf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="995.65217391304361" y="-715.17857142857144"/>
+        </scene>
+        <!--Splash Controller-->
+        <scene sceneID="WZ8-oO-t3u">
+            <objects>
+                <viewController id="drY-Aj-8vB" customClass="SplashController" customModule="iOSiFoodie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iPb-ZM-Rfn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_V2_miniatura (1)" translatesAutoresizingMaskIntoConstraints="NO" id="EO0-pu-KlE">
+                                <rect key="frame" x="76" y="203" width="263" height="207"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="iFoodie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsD-c9-hdc">
+                                <rect key="frame" x="120" y="418" width="175" height="112"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="kn7-gf-1a8"/>
+                    </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="GoToLogin" id="ELr-3O-77V"/>
+                        <segue destination="2N8-wv-4Jv" kind="show" identifier="userSaved" id="aAr-KG-VmL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RWZ-Sc-oiz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1307.2463768115942" y="-162.05357142857142"/>
         </scene>
         <!--Register User Controller-->
         <scene sceneID="48V-N8-4bD">
@@ -718,52 +750,6 @@
             </objects>
             <point key="canvasLocation" x="1808.6956521739132" y="1653.3482142857142"/>
         </scene>
-        <!--Prueba Scroll View-->
-        <scene sceneID="8aX-cV-Xwr">
-            <objects>
-                <viewController id="MLL-Xg-SB1" customClass="pruebaScrollView" customModule="iOSiFoodie" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zhd-O4-PMi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z7g-Gy-msX">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eEA-hL-WDz">
-                                        <rect key="frame" x="87" y="73" width="284" height="270"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="284" id="8j7-iQ-nA1"/>
-                                            <constraint firstAttribute="height" constant="270" id="LH6-ac-nXa"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D3I-E9-UAl">
-                                        <rect key="frame" x="65" y="484" width="306" height="370"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iws-1I-Mk4">
-                                        <rect key="frame" x="42" y="383" width="329" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="cCI-pI-7ow"/>
-                    </view>
-                    <connections>
-                        <outlet property="text" destination="Iws-1I-Mk4" id="qV8-LC-jb0"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="V4f-2j-TU9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1808.6956521739132" y="2466.9642857142858"/>
-        </scene>
         <!--View Recipe Pop Up-->
         <scene sceneID="Hvo-eR-CH1">
             <objects>
@@ -933,10 +919,11 @@
         <image name="button_cross2" width="642" height="642"/>
         <image name="eye" width="1024" height="1024"/>
         <image name="logo" width="2400" height="2412"/>
+        <image name="logo_V2_miniatura (1)" width="2408" height="2408"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SVC-qU-Wi9"/>
+        <segue reference="aAr-KG-VmL"/>
         <segue reference="AIN-0c-ovq"/>
-        <segue reference="vWZ-fj-cow"/>
+        <segue reference="ELr-3O-77V"/>
     </inferredMetricsTieBreakers>
 </document>

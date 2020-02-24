@@ -1,6 +1,8 @@
 import Alamofire
 import UIKit
 var Token = ""
+var email = ""
+var password = ""
 
 class LoginController: UIViewController {
     
@@ -11,12 +13,13 @@ class LoginController: UIViewController {
     @IBOutlet weak var passEmpty: UILabel!
     @IBOutlet weak var emailBad: UILabel!
     
+    let encoder = JSONEncoder()
+    let decoder = JSONDecoder()
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+
     }
     
     func isValidEmail(string: String) -> Bool {
@@ -52,11 +55,19 @@ class LoginController: UIViewController {
         
         if(!errores){
             postUser(user: user)
+//            let jsonUser = ["email": user.email,
+//                            "user_name": user.userName,
+//                            "password": user.password]
+//
+//
+//            let data = try encoder.encode(jsonUser)
+//
+//            let string = String(data: data, encoding: .utf8)!
         }
         
     }
     func postUser(user: User) {
-        let url = URL(string: "http://localhost:8888/iFoodieAPI/public/index.php/api/login")
+        let url = URL(string: "http://localhost:8888/APIiFoodie/public/index.php/api/login")
         let json = ["email": user.email,
                     "password": user.password]
         
@@ -64,6 +75,9 @@ class LoginController: UIViewController {
             if (response.response!.statusCode == 201) {
                 let json = response.result.value as! [String:Any]
                 Token = json["token"] as! String
+                UserDefaults.standard.set(Token, forKey: "token")
+                UserDefaults.standard.set(user.email, forKey: "email")
+                UserDefaults.standard.set(user.password, forKey: "password")
                 print(Token)
             self.performSegue(withIdentifier: "LoginSuccess", sender: nil)
             }
@@ -79,3 +93,4 @@ class LoginController: UIViewController {
       }
     }
 }
+
