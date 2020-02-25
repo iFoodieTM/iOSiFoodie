@@ -195,8 +195,8 @@
                         <viewLayoutGuide key="safeArea" id="kn7-gf-1a8"/>
                     </view>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="GoToLogin" id="ELr-3O-77V"/>
                         <segue destination="2N8-wv-4Jv" kind="show" identifier="userSaved" id="aAr-KG-VmL"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="GoToLogin" id="ORH-sU-qSO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RWZ-Sc-oiz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -924,6 +924,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="aAr-KG-VmL"/>
         <segue reference="AIN-0c-ovq"/>
-        <segue reference="ELr-3O-77V"/>
+        <segue reference="ORH-sU-qSO"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -1,19 +1,23 @@
 import UIKit
 import Alamofire
 
+var email: String! = nil
+var password: String! = nil
+
 class SplashController: UIViewController {
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
         super.viewDidLoad()
-        if UserDefaults.standard.string(forKey: "email") != "" && UserDefaults.standard.string(forKey: "password") != ""{
-            
+        if UserDefaults.standard.string(forKey: "email") != nil && UserDefaults.standard.string(forKey: "password") != nil{
             email = UserDefaults.standard.string(forKey: "email")!
             password = UserDefaults.standard.string(forKey: "password")!
             postUserNew(user: user)
             
-        } else{
-            self.performSegue(withIdentifier: "GoToLogin", sender: nil)
+        }else{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                self.performSegue(withIdentifier: "GoToLogin", sender: nil)
+            }
         }
     }
     

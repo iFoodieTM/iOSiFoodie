@@ -1,8 +1,8 @@
 import Alamofire
 import UIKit
 var Token = ""
-var email = ""
-var password = ""
+//var email = ""
+//var password = ""
 
 class LoginController: UIViewController {
     
