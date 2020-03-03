@@ -21,6 +21,9 @@ class LoginController: UIViewController {
         super.viewDidLoad()
 
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     func isValidEmail(string: String) -> Bool {
         let emailReg = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
@@ -54,6 +57,9 @@ class LoginController: UIViewController {
         }
         
         if(!errores){
+            user.email = emailInput.text!
+            user.password = passwordInput.text!
+            print(user.password)
             postUser(user: user)
 //            let jsonUser = ["email": user.email,
 //                            "user_name": user.userName,

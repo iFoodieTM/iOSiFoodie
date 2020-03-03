@@ -152,29 +152,6 @@ class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     @IBAction func addIngredient(_ sender: Any) {
         let ingredientRecipe = ingredient.text
         if ingredientRecipe != "" && !(ingredientRecipe?.contains("  "))!{ //Comprobar que el campo no esté vacío

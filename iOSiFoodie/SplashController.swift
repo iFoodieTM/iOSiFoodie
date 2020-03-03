@@ -10,6 +10,9 @@ class SplashController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
         super.viewDidLoad()
         if UserDefaults.standard.string(forKey: "email") != nil && UserDefaults.standard.string(forKey: "password") != nil{
+            print(UserDefaults.standard.string(forKey: "email")!)
+            
+            print(UserDefaults.standard.string(forKey: "password")!)
             email = UserDefaults.standard.string(forKey: "email")!
             password = UserDefaults.standard.string(forKey: "password")!
             postUserNew(user: user)
@@ -25,14 +28,15 @@ class SplashController: UIViewController {
     
     func postUserNew(user: User) {
         let url = URL(string: "http://localhost:8888/APIiFoodie/public/index.php/api/login")
-        let json = ["email": email,
-                    "password": password]
-        
+        let json = ["email": email!,
+                    "password": password!]
+        print(json)
         Alamofire.request(url!, method: .post, parameters: json, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             if (response.response!.statusCode == 201) {
                 let json = response.result.value as! [String:Any]
                 Token = json["token"] as! String
                 UserDefaults.standard.set(Token, forKey: "token")
+                print(UserDefaults.standard.set(Token, forKey: "token"))
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                     self.performSegue(withIdentifier: "userSaved", sender: nil)
                 }
