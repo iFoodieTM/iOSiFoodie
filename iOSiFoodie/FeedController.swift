@@ -16,6 +16,7 @@ class FeedController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     var json: [[String:Any]]?
     var jsonUser: [[String:Any]]?
+    var jsonUserAdmin: [[String:Any]]?
     var numberJson = 0
     var url = URL(string: "")
     override func viewDidLoad() {
@@ -57,7 +58,12 @@ class FeedController: UIViewController, UITableViewDelegate, UITableViewDataSour
             var userID = json![indexPath.row]["user_id"]! as! Int
             cell.userID.text = (String(userID))
             print(userID, "---------------------------------------")
+            
             var user = getUsername(ID: userID)
+            if user[""] as? String == "" {
+                 user = getUsernameAdmin(ID: userID)
+            }
+            
             print("hola", user)
             if user["user_name"] != nil {
                 cell.recipeUser.text = user["user_name"] as! String
@@ -71,10 +77,12 @@ class FeedController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nextScreen = segue.destination as! PruebaId
+        let nextScreen = segue.destination as! RecipeController
         let cell = sender as! cell
         let recipeid = cell.recipeID.text!
-        //nextScreen.ID = recipeid
+        let userName = cell.recipeUser.text!
+        nextScreen.ID = recipeid
+        nextScreen.userName = userName
         
        
     }
@@ -109,17 +117,34 @@ class FeedController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         return user_return
     }
+    func getUsernameAdmin (ID: Int) -> [String:Any] {
+      //var user: User = User
+        var user_return: [String:Any] = ["":""]
+        if jsonUserAdmin != nil {
+            for user in jsonUserAdmin! {
+                if user["id"] as! Int == ID {
+                    user_return = user
+                    return user_return
+
+                }
+            }
+        }
+        return user_return
+    }
     func getApps() {
-        let url = URL(string: "http://localhost:8888/APIiFoodie/public/api/showAll")
+        let url = URL(string: INIURL + "showAll")
         
         let header = ["Authentication": Token]
         print("llega")
         Alamofire.request(url!, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
-            //print(response.response?.statusCode)
+            print(response.response?.statusCode)
             if response.response!.statusCode == 200 {
-                self.json = response.result.value as? [[String: Any]]
+                print(response.result.value!)
+                self.json = response.result.value! as! [[String: Any]]
+                print(self.json!)
                 self.numberJson = self.json!.count
                 self.getUser()
+                self.getUserAdmin()
                 print("Usuarios", self.json!)
                 
             } else {
@@ -135,7 +160,7 @@ class FeedController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
         
         func getUser() {
-            let url = URL(string: "http://localhost:8888/APIiFoodie/public/api/show_users")
+            let url = URL(string: INIURL + "show_users")
             
             let header = ["Authentication": Token]
             
@@ -146,7 +171,7 @@ class FeedController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     print("lelee")
                     print("-------------------------------------------------")
                     print(response.value!)
-                    self.jsonUser = (response.value! as? [[String : Any]])
+                    self.jsonUser = response.value! as? [[String : Any]]
                     print("-------------------------------------------------")
 
                     print("Users", self.jsonUser)
@@ -163,6 +188,36 @@ class FeedController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
             }
     }
+    
+    func getUserAdmin() {
+              let url = URL(string: INIURL + "show_admin")
+              
+              let header = ["Authentication": Token]
+              
+              Alamofire.request(url!, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+                  print("LLegga")
+                  print(response.response?.statusCode)
+                  if response.response!.statusCode == 200 {
+                      print("lelee")
+                      print("-------------------------------------------------")
+                      print(response.value!)
+                      self.jsonUserAdmin = response.value! as? [[String : Any]]
+                      print("-------------------------------------------------")
+
+                      print("Users", self.jsonUser)
+                      self.tableView.reloadData()
+                      
+                  } else {
+                      let alert1 = UIAlertAction(title:"Cerrar", style: UIAlertAction.Style.default) {
+                          (error) in
+                      }
+                      let alert = UIAlertController(title: "Error", message:
+                          "Informacion Incorrecta", preferredStyle: UIAlertController.Style.alert)
+                      alert.addAction(alert1)
+                      self.present(alert, animated: true, completion: nil)
+                  }
+              }
+      }
     
     
 }

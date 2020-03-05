@@ -1,18 +1,23 @@
 import UIKit
 import Alamofire
 
-var email: String! = nil
-var password: String! = nil
-
+var email: String! = ""
+var password: String! = ""
+let INIURL:String = "http://34.204.47.162/api/"
 class SplashController: UIViewController {
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
         super.viewDidLoad()
-        if UserDefaults.standard.string(forKey: "email") != nil && UserDefaults.standard.string(forKey: "password") != nil{
-            print(UserDefaults.standard.string(forKey: "email")!)
+        
+        if UserDefaults.standard.string(forKey: "email") == nil && UserDefaults.standard.string(forKey: "password") == nil{
+            UserDefaults.standard.set("", forKey: "email")
+            UserDefaults.standard.set("", forKey: "password")
+        }
+        
+        if UserDefaults.standard.string(forKey: "email") != "" && UserDefaults.standard.string(forKey: "password") != ""{
+//            print(UserDefaults.standard.string(forKey: "email")!)
             
-            print(UserDefaults.standard.string(forKey: "password")!)
             email = UserDefaults.standard.string(forKey: "email")!
             password = UserDefaults.standard.string(forKey: "password")!
             postUserNew(user: user)
@@ -27,14 +32,14 @@ class SplashController: UIViewController {
     
     
     func postUserNew(user: User) {
-        let url = URL(string: "http://localhost:8888/APIiFoodie/public/index.php/api/login")
+        let url = URL(string: INIURL+"login")
         let json = ["email": email!,
                     "password": password!]
         print(json)
         Alamofire.request(url!, method: .post, parameters: json, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             if (response.response!.statusCode == 201) {
-                let json = response.result.value as! [String:Any]
-                Token = json["token"] as! String
+                let json = response.result.value as! String
+                Token = json 
                 UserDefaults.standard.set(Token, forKey: "token")
                 print(UserDefaults.standard.set(Token, forKey: "token"))
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {

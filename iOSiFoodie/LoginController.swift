@@ -73,14 +73,14 @@ class LoginController: UIViewController {
         
     }
     func postUser(user: User) {
-        let url = URL(string: "http://localhost:8888/APIiFoodie/public/index.php/api/login")
+        let url = URL(string: INIURL+"login")
         let json = ["email": user.email,
                     "password": user.password]
         
         Alamofire.request(url!, method: .post, parameters: json, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             if (response.response!.statusCode == 201) {
-                let json = response.result.value as! [String:Any]
-                Token = json["token"] as! String
+                let json = response.result.value as! String
+                Token = json
                 UserDefaults.standard.set(Token, forKey: "token")
                 UserDefaults.standard.set(user.email, forKey: "email")
                 UserDefaults.standard.set(user.password, forKey: "password")

@@ -2,53 +2,161 @@ import UIKit
 import AlamofireImage
 import Alamofire
 
-class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+var recipe : Recipe?
+
+class AddRecipe: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate{
     
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet weak var requiredField: UILabel!
     @IBOutlet weak var titleRecipe: UITextField!
-    @IBOutlet weak var ingredient: UITextField!
-    @IBOutlet weak var step: UITextField!
-    @IBOutlet weak var ingredientTableView: UITableView!
-    @IBOutlet weak var stepsTableView: UITableView!
-    
-    @IBOutlet weak var viewRecipeButton: UIButton!
-    @IBOutlet weak var viewPhotoButton: UIButton!
-    @IBOutlet weak var viewVideoButton: UIButton!
     @IBOutlet weak var deletePhotoButton: UIButton!
     @IBOutlet weak var deleteVideoButton: UIButton!
-    
-    var descriptionRecipe = "Esta receta es muy saludable"
+    @IBOutlet weak var imageRecipeView: UIImageView!
+    @IBOutlet weak var descriptionRecipe: UITextField!
+    @IBOutlet weak var difficultyText: UILabel!
+    @IBOutlet weak var addVideoURL: UITextField!
+    @IBOutlet weak var viewVideoURL: UILabel!
+    @IBOutlet weak var timeRecipe: UITextField!
+    @IBOutlet weak var descriptionRequired: UILabel!
+    @IBOutlet weak var timeRequired: UILabel!
+    @IBOutlet weak var changePhotoButton: UIButton!
+    @IBOutlet weak var addPhotoButton: UIButton!
     
     var imagePicker : UIImagePickerController?
+    
     var ingredientsArray = [String]()
     var stepsArray = [String]()
-
+    
     var uploadedImage : UIImage!
     
-    var categorias = ["Carne"]
+    var time = 0
     
-    var tiempo = 45
+    var difficulty = 0
     
-    var dificultad = 4
+    var URL : String = ""
     
-    public func showViewRecipeButton(){
-        if !titleRecipe.text!.isEmpty && !ingredientsArray.isEmpty && !stepsArray.isEmpty{
-            viewRecipeButton.isHidden = false
+    var videoURL: String = ""
+    
+    var urlImage = Data.self
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.scrollView.endEditing(true)
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if recipe != nil{
+            setDataRecipe()
+        }
+    }
+//    
+//    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        self.view.endEditing(true)
+//    }
+    
+    @IBAction func next(_ sender: Any) {
+            fillRecipe()
+    }
+    
+    @IBAction func maxDescriptionLength(_ sender: UITextField) {
+        checkMaxLength(textField: descriptionRecipe, maxLength: 100)
+    }
+    
+    @IBAction func timeRequired(_ sender: Any) {
+        if timeRecipe.text!.isEmpty{
+            timeRequired.isHidden = false
         }else{
-            viewRecipeButton.isHidden = true
+            timeRequired.isHidden = true
         }
     }
     
+    @IBAction func descriptionRequired(_ sender: Any) {
+        if descriptionRecipe.text!.isEmpty{
+            descriptionRequired.isHidden = false
+        }else{
+            descriptionRequired.isHidden = true
+        }
+    }
+    
+    @IBAction func maxNumbers(_ sender: UITextField) {
+        checkMaxLength(textField: timeRecipe, maxLength: 3)
+    }
+    
+    func checkMaxLength(textField: UITextField!, maxLength: Int) {
+        if (textField.text!.count > maxLength) {
+            textField.deleteBackward()
+        }
+    }
+    
+    @IBAction func difficulty1(_ sender: Any) {
+        difficulty = 1
+        difficultyText.text = "1"
+        difficultyText.isHidden = false
+    }
+    
+    @IBAction func difficulty2(_ sender: Any) {
+        difficulty = 2
+        difficultyText.text = "2"
+        difficultyText.isHidden = false
+    }
+    
+    @IBAction func difficulty3(_ sender: Any) {
+        difficulty = 3
+        difficultyText.text = "3"
+        difficultyText.isHidden = false
+    }
+    
+    @IBAction func difficulty4(_ sender: Any) {
+        difficulty = 4
+        difficultyText.text = "4"
+        difficultyText.isHidden = false
+    }
+    
+    @IBAction func difficulty5(_ sender: Any) {
+        difficulty = 5
+        difficultyText.text = "5"
+        difficultyText.isHidden = false
+    }
+    
     @IBAction func titleChanged(_ sender: UITextField) {
-        showViewRecipeButton()
+        if (titleRecipe.text!.isEmpty){
+            requiredField.isHidden = false
+        }else{
+            requiredField.isHidden = true
+        }
+        checkMaxLength(textField: titleRecipe, maxLength: 30)
     }
     
     @IBAction func deleteUploadedButton(_ sender: Any) {
         uploadedImage = nil
         let alert = UIAlertController(title: "Imagen eliminada", message: "Puedes volver a elegir una imagen para tu receta", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Vale", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
-        viewPhotoButton.isHidden = true
         deletePhotoButton.isHidden = true
+        imageRecipeView.image = nil
+        changePhotoButton.isHidden = true
+        addPhotoButton.isHidden = false
+    }
+    
+    @IBAction func changePhoto(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Elegir imagen", message: "Los usuarios podrán verla al entrar a tu receta", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Cámara", style: .default, handler: { _ in
+            self.openCamera()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Galería", style: .default, handler: { _ in
+            self.openGallery()
+        }))
+        
+        alert.addAction(UIAlertAction.init(title: "Cancelar", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func uploadPhoto(_ sender: UIButton) {
@@ -62,7 +170,7 @@ class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         }))
         
         alert.addAction(UIAlertAction.init(title: "Cancelar", style: .cancel, handler: nil))
-
+        
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -76,7 +184,7 @@ class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         }
         else{
             let alert  = UIAlertController(title: "Error", message: "Tu dispositivo no tiene cámara o tiene un fallo", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Vale", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -91,7 +199,7 @@ class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         }
         else{
             let alert  = UIAlertController(title: "Error", message: "No tienes permisos para acceder a la Galería", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Vale", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -100,198 +208,91 @@ class AddRecipe: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         dismiss(animated: true, completion: nil)
         uploadedImage = info[.originalImage] as? UIImage
         print("La imagen es: " , uploadedImage!)
-        viewPhotoButton.isHidden = false
         deletePhotoButton.isHidden = false
+        imageRecipeView.image = uploadedImage
+        changePhotoButton.isHidden = false
+        addPhotoButton.isHidden = true
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "viewRecipePopUp" {
-            let RecipePopUp = segue.destination as! ViewRecipePopUp //ViewController al que pasar la información
-            RecipePopUp.titleRecipe = titleRecipe.text! // variable del viewB que recibe lo que le envias de viewA
-            RecipePopUp.ingredients = ingredientsArray
-            RecipePopUp.steps = stepsArray
-            RecipePopUp.image = uploadedImage
+    @IBAction func addVideoURL(_ sender: Any) {
+        if addVideoURL.text != ""{
+            URL = addVideoURL.text!
+            viewVideoURL.text = URL
+            viewVideoURL.isHidden = false
+            deleteVideoButton.isHidden = false
         }
-        if segue.identifier == "viewImagePopUp" {
-            let ImagePopUp = segue.destination as! ViewImagePopUp
-            ImagePopUp.image = uploadedImage
+        if !(addVideoURL.text?.contains("https://youtu.be/"))! || (addVideoURL.text?.contains(" "))!{
+            viewVideoURL.isHidden = true
+            deleteVideoButton.isHidden = true
+            deleteVideoButton.isHidden = true
+            let alert = UIAlertController(title: "URL de vídeo no compatible o mal escrita", message: "La URL puede que esté mal escrita o que no sea procedente de la aplicación de Youtube", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Vale", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
-    }
-
-    @IBAction func uploadVideo(_ sender: Any) {
-        let alert = UIAlertController(title: "Elegir vídeo", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Cámara", style: .default, handler: { _ in
-            self.openCamera()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Galería", style: .default, handler: { _ in
-            self.openGallery()
-        }))
-        
-        alert.addAction(UIAlertAction.init(title: "Cancelar", style: .cancel, handler: nil))
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    @IBAction func saveRecipe(_ sender: Any) {
-        postRecipe()
-        self.ingredientsArray.removeAll()
-        self.stepsArray.removeAll()
-        self.stepsTableView.reloadData()
-        self.ingredientTableView.reloadData()
-        self.titleRecipe.text! = ""
-        viewRecipeButton.isHidden = true
-        viewPhotoButton.isHidden = true
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    @IBAction func addIngredient(_ sender: Any) {
-        let ingredientRecipe = ingredient.text
-        if ingredientRecipe != "" && !(ingredientRecipe?.contains("  "))!{ //Comprobar que el campo no esté vacío
-            ingredientsArray.append(ingredientRecipe!)
-            ingredientTableView.reloadData()
-            print(ingredientsArray)
-            ingredient.text = "" //Reiniciar el campo de texto
-            showViewRecipeButton()
+        if addVideoURL.text != "" && (addVideoURL.text?.contains("https://youtu.be/"))! && !(addVideoURL.text?.contains(" "))!{
+            videoURL = addVideoURL.text!
         }
     }
     
-    @IBAction func removeIngredient(_ sender: UIButton) {
-        print(sender.tag)
-        ingredientsArray.remove(at: sender.tag) //Eliminar elemento del Array
-        let indexIngredient = IndexPath(item: sender.tag, section: 0) //Índice del elemento
-        ingredientTableView.deleteRows(at: [indexIngredient], with: .right) //Eliminar la celda con animación
-        print(ingredientsArray)
-        showViewRecipeButton()
+    @IBAction func deleteVideoURL(_ sender: Any) {
+        URL = ""
+        viewVideoURL.text = ""
+        addVideoURL.text = ""
+        viewVideoURL.isHidden = true
+        deleteVideoButton.isHidden = true
     }
     
-    @IBAction func addStep(_ sender: Any) {
-        let stepRecipe = step.text
-        if stepRecipe != "" {
-            stepsArray.append(stepRecipe!)
-            stepsTableView.reloadData()
-            print(stepsArray)
-            step.text = ""
-            showViewRecipeButton()
+    public func setDataRecipe(){
+        titleRecipe.text = recipe?.title
+        descriptionRecipe.text = recipe?.description
+        
+        time = recipe!.time
+        timeRecipe.text = String(recipe!.time)
+        
+        difficulty = recipe!.difficulty
+        difficultyText.isHidden = false
+        difficultyText.text = String(recipe!.difficulty)
+        
+        if recipe?.video != ""{
+            addVideoURL.text = "https://youtu.be/\(String(describing: recipe!.video))"
+        }
+        
+        var urlImage : Data? = nil
+        if recipe?.image != nil{
+            urlImage = recipe?.image
+        }
+        
+        var image : UIImage?
+        
+        if urlImage != nil{
+            image = UIImage(data: urlImage!)
+            imageRecipeView.image = image
+            deletePhotoButton.isHidden = false
+        }else{
+            image = nil
         }
     }
     
-    @IBAction func removeStep(_ sender: UIButton) {
-        print(sender.tag)
-        stepsArray.remove(at: sender.tag)
-        let indexStep = IndexPath(item: sender.tag, section: 0)
-        stepsTableView.deleteRows(at: [indexStep], with: .right)
-        print(stepsArray)
-        showViewRecipeButton()
-        showViewRecipeButton()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
-        ingredientTableView.backgroundColor = UIColor(white: 1, alpha: 0) //Fondo del TableView transparente
-        stepsTableView.backgroundColor = UIColor(white: 1, alpha: 0)
-        ingredientTableView.delegate = self
-        ingredientTableView.dataSource = self
-        stepsTableView.delegate = self
-        stepsTableView.dataSource = self
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let numberOfRow = 1
-        switch tableView {
-            case ingredientTableView:
-                return ingredientsArray.count
-            case stepsTableView:
-                return stepsArray.count
-            default:
-                print("Error al cargar")
-        }
-        return numberOfRow
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        
-        //TableView de Ingredientes
-        if tableView.tag == 0{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath) as! IngredientCell
-            cell.backgroundColor = UIColor(white: 1, alpha: 0) //Celda transparente
-            
-            cell.ingredientName.text = ingredientsArray[indexPath.row] //Mostrar el ingrediente escrito
-            cell.deleteIngredientButton.tag = indexPath.row
-            return cell
+    public func fillRecipe(){
+        let time = Int(timeRecipe.text!) ?? 0
+        var urlImage : Data? = nil
+        if uploadedImage != nil{
+            urlImage = uploadedImage.jpegData(compressionQuality: 0.5)!
         }
         
-        //TableView de Pasos
-        if tableView.tag == 1{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "StepCell", for: indexPath) as! StepCell
-            cell.backgroundColor = UIColor(white: 1, alpha: 0) //Celda transparente
-            
-            let numberStepOrder = String(indexPath.row + 1) //Convertir el indexPath a String
-            cell.stepOrder.text = numberStepOrder + "." //Mostrar el número del paso
-            cell.stepInformation.text = stepsArray[indexPath.row] //Mostrar la información del paso escrito
-            cell.deleteStepButton.tag = indexPath.row
-            return cell
+        var codeVideo: String.SubSequence = ""
+        if !addVideoURL.text!.isEmpty{
+            print("URL VIDEO",videoURL)
+            codeVideo = (videoURL.dropFirst(17)) //Código del vídeo a partir de la barra
+            print("El código del vídeo de Youtube es:", codeVideo)
         }
-        return cell
-    }
-    
-    public func postRecipe(){
-        let url = URL(string: "http://localhost:8888/APIiFoodie/public/index.php/api/recipes")
         
-        let json = ["name" : titleRecipe.text!,
-                    "ingredients" : ingredientsArray,
-                    "steps" : stepsArray,
-                    "categories" : categorias,
-                    "difficulty" : dificultad,
-                    "time" : tiempo,
-                    "description": descriptionRecipe] as [String : Any]
-        
-        print (json)
-        
-        print ("token", Token)
-        
-        let Token = UserDefaults.standard.string(forKey: "token")
-        
-        let header = ["Authentication": Token]
-        
-        Alamofire.request(url!, method: .post, parameters: json, encoding: JSONEncoding.default, headers: header as! HTTPHeaders).responseJSON { (response) in
-            
-            let statusCode = response.response?.statusCode
-            
-            print(response)
-            print(statusCode!)
-            
-            if statusCode == 200{
-                let alert = UIAlertController(title: "Receta subida", message: "Tu nueva receta está disponible para que otros usuarios puedan verla", preferredStyle: .actionSheet)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        if !titleRecipe.text!.isEmpty && !titleRecipe.text!.contains("  ") && titleRecipe.text != " " && !descriptionRecipe.text!.isEmpty && !descriptionRecipe.text!.contains("  ") && descriptionRecipe.text != " " && time != 0 && difficulty != 0 {
+            recipe = Recipe(title: titleRecipe.text!, description: descriptionRecipe.text!, time: time, difficulty: difficulty, categories: [], ingredients: [], steps: [], image: urlImage, video: String(codeVideo))
+        }else{
+            let alert  = UIAlertController(title: "No se puede continuar", message: "Faltan campos obligatorios por rellenar", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Vale", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-                
-            }else if statusCode == 500{
-                let alert = UIAlertController(title: "Aviso", message: "Tienes que rellenar los campos", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                
-            }else if statusCode == 401{
-                let alert = UIAlertController(title: "Aviso", message: "Tienes que rellenar los campos", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                print("Peticion incorrecta")
-            }
         }
     }
 }
-    
-
