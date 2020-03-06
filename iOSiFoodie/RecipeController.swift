@@ -39,7 +39,7 @@ class RecipeController : UIViewController, SFSpeechRecognizerDelegate {
     
     let asistente = "carmela "
 
-    var arrayPasosHard = ["","Paso 1. Carne, tomate y ajetes", "paso 2. Echarlo todo a la olla", "Paso 3. Ponerlo a hervir a fuego lento","paso 4. cuando parezca que esta, es que esta"]
+//    var arrayPasosHard = ["","Paso 1. Carne, tomate y ajetes", "paso 2. Echarlo todo a la olla", "Paso 3. Ponerlo a hervir a fuego lento","paso 4. cuando parezca que esta, es que esta"]
     
     let speechSynthesizer = AVSpeechSynthesizer()
     let speechRecognizer2 = SFSpeechRecognizer()
@@ -96,16 +96,10 @@ class RecipeController : UIViewController, SFSpeechRecognizerDelegate {
     var posicionVideo = 0
     
     
-    
-    
-    
-    
-    
-    
-    override func viewDidLoad() {
+    override public func viewDidAppear(_ animated: Bool) {
+        // Configure the SFSpeechRecognizer object already
+        // stored in a local member variable.
         
-        super.viewDidLoad()
-                
         self.view.backgroundColor = UIColor(patternImage:#imageLiteral(resourceName: "fondoIFOODIE"))
         
         // Transparencia del scrollView
@@ -118,14 +112,6 @@ class RecipeController : UIViewController, SFSpeechRecognizerDelegate {
         
         getRecipe()
         
-        
-        
-    }
-    
-    
-    override public func viewDidAppear(_ animated: Bool) {
-        // Configure the SFSpeechRecognizer object already
-        // stored in a local member variable.
         speechRecognizer.delegate = self
 
         // Make the authorization request
@@ -155,10 +141,15 @@ class RecipeController : UIViewController, SFSpeechRecognizerDelegate {
         }
     }
     
+    
+    @IBAction func back(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
         
             func numberToText(int: Int)->String {
                    
-                   return arrayPasosHard[int]
+                   return arraySteps[int]
                    /*
                    switch int {
                    case -2:
@@ -188,9 +179,9 @@ class RecipeController : UIViewController, SFSpeechRecognizerDelegate {
                        // String a reproducir
                    let speechUtterance: AVSpeechUtterance = AVSpeechUtterance(string: string)
                        // velocidad de reproduccion
-                       speechUtterance.rate = AVSpeechUtteranceMaximumSpeechRate / 1.9
+                speechUtterance.rate = AVSpeechUtteranceMaximumSpeechRate / 2.2
                        // idioma
-                       speechUtterance.voice = AVSpeechSynthesisVoice(language: "es-MX")
+                       speechUtterance.voice = AVSpeechSynthesisVoice(language: "es-ES")
                    
                        speechSynthesizer.speak(speechUtterance)
                    
@@ -219,6 +210,13 @@ class RecipeController : UIViewController, SFSpeechRecognizerDelegate {
             recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
             guard let recognitionRequest = recognitionRequest else { fatalError("No se pudo crear la petición de reconocimiento") }
             recognitionRequest.shouldReportPartialResults = true
+            
+            
+
+//                    if #available(iOS 13, *) {
+//                        recognitionRequest.requiresOnDeviceRecognition = false
+//                    }
+
             
             // Configuración del micrófono
             let recordingFormat = inputNode.outputFormat(forBus: 0)
@@ -869,8 +867,6 @@ class RecipeController : UIViewController, SFSpeechRecognizerDelegate {
         }
         
     }
-
-    class ViewController: UIViewController, SFSpeechRecognizerDelegate {
         
 //        private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "es-ES"))!
 //        private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -1357,4 +1353,4 @@ class RecipeController : UIViewController, SFSpeechRecognizerDelegate {
     
     
     
-}
+

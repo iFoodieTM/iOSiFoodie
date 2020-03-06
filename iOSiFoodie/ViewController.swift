@@ -1,5 +1,213 @@
 //
 //  ViewController.swift
+//  PruebasiFoodie
+//
+//  Created by alumnos on 24/02/2020.
+//  Copyright © 2020 alumnos. All rights reserved.
+//
+
+import UIKit
+import Alamofire
+import AlamofireImage
+
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
+    @IBOutlet weak var edit: UIButton!
+    @IBOutlet weak var userUserName: UILabel!
+    @IBOutlet weak var userImg: UIImageView!
+    @IBOutlet weak var tableview: UITableView!
+    var json: [[String:Any]]?
+    var jsonUser: [String:Any]?
+    var numberJson = 0
+    var url = URL(string: "")
+    var user_id = 0
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
+        self.tableview.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0)
+        getUser()
+        if user_id != 0{
+            getApps()
+        }
+        setUser()
+        tableview.delegate = self
+        tableview.dataSource = self
+        //tableview.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return numberJson
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "celda", for: indexPath) as! cell
+        
+        if json != nil {
+            var start_url = json![indexPath.row]["photo"] as! String
+            
+            url = URL(string: start_url)
+            cell.recipeImg.af_setImage(withURL: url!)
+            cell.recipeImg.layer.cornerRadius = cell.recipeImg.frame.height/2
+            print(cell.recipeImg.af_setImage(withURL: url!))
+            cell.recipeName.text = (json![indexPath.row]["name"]! as! String)
+            
+            //cell.recipeDifficult.text = ((json![indexPath.row]["difficulty"]!) as! String)
+           
+            var dificultad = json![indexPath.row]["difficulty"]! as! Int
+            cell.recipeDifficult.image = getDifficulty(dificultad: dificultad)
+            var tiempo = json![indexPath.row]["time"]! as! Int
+            cell.recipeTime.text = (String(tiempo))
+            var id = json![indexPath.row]["id"]! as! Int
+            cell.recipeID.text = (String(id))
+            
+        }
+        if jsonUser != nil {
+            print(jsonUser!)
+            var urlUser  = URL(string: jsonUser!["photo"] as! String)
+            userImg.af_setImage(withURL: urlUser!)
+            userUserName.text = jsonUser!["user_name"] as! String
+        }
+        
+        cell.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoceldaFinalFinalFinal"))
+        return cell
+    }
+    
+    
+    
+    
+    @IBAction func edit_profile(_ sender: Any) {
+        self.performSegue(withIdentifier: "editProfile", sender: nil)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if edit.isTouchInside == true {
+            let nextScreen = segue.destination as! EditProfile
+        } else {
+            let nextScreen = segue.destination as! RecipeController
+            let cell = sender as! cell
+            let recipeid = cell.recipeID.text!
+            let userName = userUserName.text!
+            nextScreen.ID = recipeid
+            nextScreen.userName = userName
+        }
+    }
+    
+    func setUser () {
+        if jsonUser != nil {
+            print("Se va a imprimir")
+            var urlUser  = URL(string: jsonUser!["photo"] as! String)
+            print(urlUser!, "Nombre")
+            userImg.af_setImage(withURL: urlUser!)
+            userImg.layer.cornerRadius = userImg.frame.height/2
+            userUserName.text = jsonUser!["user_name"] as! String
+        }
+    }
+    
+    func getDifficulty(dificultad: Int) -> UIImage{
+        switch dificultad {
+        case 1:
+            return #imageLiteral(resourceName: "skull0")
+        case 2:
+            return #imageLiteral(resourceName: "skull1")
+        case 3:
+            return #imageLiteral(resourceName: "skull3")
+        case 4:
+            return #imageLiteral(resourceName: "skull4")
+        case 5:
+            return #imageLiteral(resourceName: "skull5")
+        default:
+            return #imageLiteral(resourceName: "skull6")
+        }
+    }
+    func getApps() {
+        let url = URL(string: INIURL + "showAllFromUser")
+        let jsonId = ["user_id": user_id]
+        
+        let header = ["Authentication": Token]
+        
+        Alamofire.request(url!, method: .post, parameters: jsonId, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+            print(response.response?.statusCode)
+            print("recipe")
+            if response.response!.statusCode == 200 {
+                self.json = response.result.value as? [[String: Any]]
+                self.numberJson = self.json!.count
+                self.tableview.reloadData()
+                print(self.json!)
+                
+            }
+        }
+    }
+    
+    func getUser() {
+        let url = URL(string: INIURL + "show_user")
+        
+        let header = ["Authentication": Token]
+        
+        Alamofire.request(url!, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+            print(response.response?.statusCode)
+            print("user")
+            if response.response!.statusCode == 200 {
+                print(response.result.value!)
+                self.jsonUser = response.result.value as? [String: Any]
+                self.user_id = self.jsonUser!["id"] as! Int
+                if self.json == nil {
+                    self.viewDidLoad()
+                }
+                
+                print(self.jsonUser!)
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  ViewController.swift
 //  PruebaSiri
 //
 //  Created by alumnos on 11/02/2020.
