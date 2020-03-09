@@ -6,7 +6,6 @@ var recipe : Recipe?
 
 class AddRecipe: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate{
     
-    @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var requiredField: UILabel!
     @IBOutlet weak var titleRecipe: UITextField!
     @IBOutlet weak var deletePhotoButton: UIButton!
@@ -45,7 +44,7 @@ class AddRecipe: UIViewController, UINavigationControllerDelegate, UIImagePicker
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.scrollView.endEditing(true)
+        self.view.endEditing(true)
     }
     
     

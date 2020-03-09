@@ -24,6 +24,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var user_id = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
         self.tableview.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0)
         getUser()
