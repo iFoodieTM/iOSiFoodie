@@ -97,8 +97,8 @@
             filePath = "iOSiFoodie/PopSteps.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "617"
-            endingLineNumber = "617"
+            startingLineNumber = "589"
+            endingLineNumber = "589"
             landmarkName = "textToNumber(string:)"
             landmarkType = "7">
          </BreakpointContent>

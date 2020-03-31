@@ -392,38 +392,10 @@ class PopSteps: UIViewController, SFSpeechRecognizerDelegate, UITableViewDelegat
                                 self.read2(string: self.numberToText(int: 7))
                                 mensajeCut = String(mensaje.dropFirst(self.contador))
                                 
-                            case 8:
-                                
-                                self.contador = mensaje.count
-                                print("------------ contador: ",self.contador, "-------------------")
-                                ////                        //                        self.contador = 0
-                                ////
-                                self.read2(string: "que baile tu prima la sin dientes")
-                                mensajeCut = String(mensaje.dropFirst(self.contador))
+//
                                 
                                 
-                                
-                                
-                            case 9:
-                            
-                            self.contador = mensaje.count
-                            print("------------ contador: ",self.contador, "-------------------")
-                            ////                        //                        self.contador = 0
-                            ////
-                            self.read2(string: "Viva!!., Cara al sol con la camisa nueva. Que tú bordaste en rojo ayer,Me hallará la muerte si me lleva Y no te vuelvo a ver. Formaré junto a los compañeros  Que hacen guardia sobre los luceros")
-                            mensajeCut = String(mensaje.dropFirst(self.contador))
-                            //
-                            case 10:
-                            
-                            self.contador = mensaje.count
-                            print("------------ contador: ",self.contador, "-------------------")
-                            ////                        //                        self.contador = 0
-                            ////
-                            self.read1(string: "predicado tus muertos")
-                            
-                            mensajeCut = String(mensaje.dropFirst(self.contador))
-                                //
-        //
+//        //
         //                    case 8:
         //
         //                        self.contador = mensaje.count
@@ -603,12 +575,12 @@ class PopSteps: UIViewController, SFSpeechRecognizerDelegate, UITableViewDelegat
                     return contPaso
                 }
                 
-                if string.contains(asistente + "viva españa") || string.contains(asistente + "paso 9") || string.contains(asistente + "lee el noveno paso") || string.contains(asistente + "noveno paso") {
+                if string.contains(asistente + "paso 9") || string.contains(asistente + "lee el noveno paso") || string.contains(asistente + "noveno paso") {
                     contPaso = 9
                     return contPaso
                 }
                 
-                if string.contains(asistente + "sintagma verbal predicado") || string.contains(asistente + "paso 10") || string.contains(asistente + "lee el décimo paso") || string.contains(asistente + "décimo paso") {
+                if  string.contains(asistente + "paso 10") || string.contains(asistente + "lee el décimo paso") || string.contains(asistente + "décimo paso") {
                     contPaso = 10
                     return contPaso
                 }
