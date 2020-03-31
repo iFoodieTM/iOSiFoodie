@@ -17,7 +17,7 @@ class LoginController: UIViewController {
     let decoder = JSONDecoder()
     
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondo_IF_2 (1)"))
         super.viewDidLoad()
 
     }
@@ -70,8 +70,8 @@ class LoginController: UIViewController {
 //
 //            let string = String(data: data, encoding: .utf8)!
         }
-        
     }
+    
     func postUser(user: User) {
         let url = URL(string: INIURL+"login")
         let json = ["email": user.email,

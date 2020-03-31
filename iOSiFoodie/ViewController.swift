@@ -24,8 +24,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var user_id = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
         self.tableview.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0)
         getUser()
         if user_id != 0{
@@ -36,6 +34,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableview.dataSource = self
         //tableview.reloadData()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        tableview.reloadData()
+        self.tableview.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0)
+        getUser()
+        if user_id != 0{
+            getApps()
+        }
+        setUser()
+        tableview.delegate = self
+        tableview.dataSource = self
+        tableview.reloadData()
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return numberJson
@@ -45,9 +55,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "celda", for: indexPath) as! cell
         
         if json != nil {
+    
             var start_url = json![indexPath.row]["photo"] as! String
+            var pathImage = "http://54.226.238.184/storage/" + start_url
+            url = URL(string: pathImage)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print(pathImage)
+            print("\(url!)")
+            //                print("\(url!)")
+                        // if url as! String != "fotoprueba.png" {
+                            
             
-            url = URL(string: start_url)
             cell.recipeImg.af_setImage(withURL: url!)
             cell.recipeImg.layer.cornerRadius = cell.recipeImg.frame.height/2
             print(cell.recipeImg.af_setImage(withURL: url!))
@@ -70,7 +88,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             userUserName.text = jsonUser!["user_name"] as! String
         }
         
-        cell.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoceldaFinalFinalFinal"))
+        cell.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoceldaFinalFinalFinal (1)"))
         return cell
     }
     
@@ -98,7 +116,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func setUser () {
         if jsonUser != nil {
             print("Se va a imprimir")
-            var urlUser  = URL(string: jsonUser!["photo"] as! String)
+            var urlUser = URL(string: jsonUser!["photo"] as! String)
             print(urlUser!, "Nombre")
             userImg.af_setImage(withURL: urlUser!)
             userImg.layer.cornerRadius = userImg.frame.height/2
@@ -109,14 +127,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func getDifficulty(dificultad: Int) -> UIImage{
         switch dificultad {
         case 1:
-            return #imageLiteral(resourceName: "skull0")
-        case 2:
             return #imageLiteral(resourceName: "skull1")
-        case 3:
+        case 2:
             return #imageLiteral(resourceName: "skull3")
-        case 4:
-            return #imageLiteral(resourceName: "skull4")
-        case 5:
+        case 3:
             return #imageLiteral(resourceName: "skull5")
         default:
             return #imageLiteral(resourceName: "skull6")

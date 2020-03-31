@@ -26,12 +26,15 @@
 		577BE4D023D7168C00371F30 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4CF23D7168C00371F30 /* LoginController.swift */; };
 		577BE4D223D71EA900371F30 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4D123D71EA900371F30 /* User.swift */; };
 		577BE4D423D7222C00371F30 /* RegisterUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BE4D323D7222C00371F30 /* RegisterUserController.swift */; };
+		57944450241F91F200AC0DA2 /* StepsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5794444F241F91F200AC0DA2 /* StepsCell.swift */; };
 		57A9A90324117AE400FF8110 /* AddIngredientsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A9A90224117AE400FF8110 /* AddIngredientsController.swift */; };
 		57A9A90724117B6200FF8110 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A9A90624117B6200FF8110 /* Recipe.swift */; };
 		57A9A90924117B7100FF8110 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A9A90824117B7100FF8110 /* CategoryCell.swift */; };
 		57A9A90B24117B7600FF8110 /* ViewIngredientsPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A9A90A24117B7600FF8110 /* ViewIngredientsPopUp.swift */; };
 		57A9A90D2411843000FF8110 /* AddSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A9A90C2411843000FF8110 /* AddSteps.swift */; };
 		57A9A90F2411C30E00FF8110 /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A9A90E2411C30E00FF8110 /* EditProfile.swift */; };
+		57EC980C24166244000806C6 /* Vstack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EC980B24166244000806C6 /* Vstack.swift */; };
+		57EC980E24167254000806C6 /* PopSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EC980D24167254000806C6 /* PopSteps.swift */; };
 		7F30CBE623F5649F001CB4F8 /* StepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F30CBE523F5649F001CB4F8 /* StepCell.swift */; };
 		7F3A017223F426640049F211 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3A017123F426640049F211 /* IngredientCell.swift */; };
 		7F65E63523E9A0610076C24F /* AddRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F65E63423E9A0610076C24F /* AddRecipe.swift */; };
@@ -63,12 +66,15 @@
 		577BE4CF23D7168C00371F30 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		577BE4D123D71EA900371F30 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		577BE4D323D7222C00371F30 /* RegisterUserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserController.swift; sourceTree = "<group>"; };
+		5794444F241F91F200AC0DA2 /* StepsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsCell.swift; sourceTree = "<group>"; };
 		57A9A90224117AE400FF8110 /* AddIngredientsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientsController.swift; sourceTree = "<group>"; };
 		57A9A90624117B6200FF8110 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Recipe.swift; path = ../../../Downloads/iFoodieIOS/iOSiFoodie/Recipe.swift; sourceTree = "<group>"; };
 		57A9A90824117B7100FF8110 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCell.swift; path = ../../../Downloads/iFoodieIOS/iOSiFoodie/CategoryCell.swift; sourceTree = "<group>"; };
 		57A9A90A24117B7600FF8110 /* ViewIngredientsPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewIngredientsPopUp.swift; path = ../../../Downloads/iFoodieIOS/iOSiFoodie/ViewIngredientsPopUp.swift; sourceTree = "<group>"; };
 		57A9A90C2411843000FF8110 /* AddSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddSteps.swift; path = ../../../Downloads/iFoodieIOS/iOSiFoodie/AddSteps.swift; sourceTree = "<group>"; };
 		57A9A90E2411C30E00FF8110 /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
+		57EC980B24166244000806C6 /* Vstack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vstack.swift; sourceTree = "<group>"; };
+		57EC980D24167254000806C6 /* PopSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopSteps.swift; sourceTree = "<group>"; };
 		6068B1AC25094867BAA2F1F2 /* Pods-iOSiFoodie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSiFoodie.release.xcconfig"; path = "Target Support Files/Pods-iOSiFoodie/Pods-iOSiFoodie.release.xcconfig"; sourceTree = "<group>"; };
 		7F30CBE523F5649F001CB4F8 /* StepCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCell.swift; sourceTree = "<group>"; };
 		7F3A017123F426640049F211 /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
@@ -124,6 +130,8 @@
 				577BE4BF23D7126F00371F30 /* ViewController.swift */,
 				575C36BD24111C2000CA4831 /* paso.swift */,
 				577BE4C123D7126F00371F30 /* Main.storyboard */,
+				5794444F241F91F200AC0DA2 /* StepsCell.swift */,
+				57EC980B24166244000806C6 /* Vstack.swift */,
 				57A9A90E2411C30E00FF8110 /* EditProfile.swift */,
 				575DD4EC24067FEC0029A312 /* PruebaId.swift */,
 				575DD4E824067D310029A312 /* FeedController.swift */,
@@ -138,8 +146,8 @@
 				577BE4C423D7127000371F30 /* Assets.xcassets */,
 				7F3A017123F426640049F211 /* IngredientCell.swift */,
 				577BE4C623D7127000371F30 /* LaunchScreen.storyboard */,
-				577BE4C923D7127000371F30 /* Info.plist */,
 				7F65E63423E9A0610076C24F /* AddRecipe.swift */,
+				577BE4C923D7127000371F30 /* Info.plist */,
 				7FA7080723EAD5BF0092D4DD /* HomeController.swift */,
 				57A9A90C2411843000FF8110 /* AddSteps.swift */,
 				7FC6CC1423EC3C85008385A3 /* RegisterResController.swift */,
@@ -150,6 +158,7 @@
 				0724CCE323FC56D50089FB8F /* ViewImagePopUp.swift */,
 				0724CCE523FDB23D0089FB8F /* ViewRecipePopUp.swift */,
 				0724CCE923FF18D50089FB8F /* pruebaScrollView.swift */,
+				57EC980D24167254000806C6 /* PopSteps.swift */,
 			);
 			path = iOSiFoodie;
 			sourceTree = "<group>";
@@ -285,10 +294,12 @@
 				57A9A90924117B7100FF8110 /* CategoryCell.swift in Sources */,
 				577BE4C023D7126F00371F30 /* ViewController.swift in Sources */,
 				7F65E63523E9A0610076C24F /* AddRecipe.swift in Sources */,
+				57944450241F91F200AC0DA2 /* StepsCell.swift in Sources */,
 				0724CCEA23FF18D50089FB8F /* pruebaScrollView.swift in Sources */,
 				57A9A90F2411C30E00FF8110 /* EditProfile.swift in Sources */,
 				7FA7080823EAD5BF0092D4DD /* HomeController.swift in Sources */,
 				575DD4ED24067FEC0029A312 /* PruebaId.swift in Sources */,
+				57EC980C24166244000806C6 /* Vstack.swift in Sources */,
 				0724CCE423FC56D50089FB8F /* ViewImagePopUp.swift in Sources */,
 				575DD4E924067D310029A312 /* FeedController.swift in Sources */,
 				0724CCE623FDB23D0089FB8F /* ViewRecipePopUp.swift in Sources */,
@@ -298,6 +309,7 @@
 				7F3A017223F426640049F211 /* IngredientCell.swift in Sources */,
 				57A9A90724117B6200FF8110 /* Recipe.swift in Sources */,
 				5757C4F423DA2A870079EDFB /* RecoverPasswordController.swift in Sources */,
+				57EC980E24167254000806C6 /* PopSteps.swift in Sources */,
 				577BE4D023D7168C00371F30 /* LoginController.swift in Sources */,
 				57A9A90B24117B7600FF8110 /* ViewIngredientsPopUp.swift in Sources */,
 				575C36BE24111C2000CA4831 /* paso.swift in Sources */,

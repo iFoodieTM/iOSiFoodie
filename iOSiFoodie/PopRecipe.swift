@@ -32,7 +32,6 @@ class PopRecipe: UIViewController {
 
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor(patternImage:#imageLiteral(resourceName: "fondoIFOODIE"))
 
         
 

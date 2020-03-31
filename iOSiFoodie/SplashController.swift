@@ -3,11 +3,11 @@ import Alamofire
 
 var email: String! = ""
 var password: String! = ""
-let INIURL:String = "http://34.204.47.162/api/"
+let INIURL:String = "http://54.226.238.184/api/"
 class SplashController: UIViewController {
     
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondo_IF_2 (1)"))
         super.viewDidLoad()
         
         if UserDefaults.standard.string(forKey: "email") == nil && UserDefaults.standard.string(forKey: "password") == nil{
@@ -20,6 +20,7 @@ class SplashController: UIViewController {
             
             email = UserDefaults.standard.string(forKey: "email")!
             password = UserDefaults.standard.string(forKey: "password")!
+            print("---------------")
             postUserNew(user: user)
             
         }else{
@@ -36,8 +37,11 @@ class SplashController: UIViewController {
         let json = ["email": email!,
                     "password": password!]
         print(json)
+        print("ruben")
         Alamofire.request(url!, method: .post, parameters: json, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+            print(response)
             if (response.response!.statusCode == 201) {
+                print("WWWWWW")
                 let json = response.result.value as! String
                 Token = json 
                 UserDefaults.standard.set(Token, forKey: "token")
@@ -47,6 +51,7 @@ class SplashController: UIViewController {
                 }
             }
             if (response.response!.statusCode == 401)  {
+                print("EEEEE")
                 let alert1 = UIAlertAction(title:"Cerrar", style: UIAlertAction.Style.default) {
                     (error) in
                 }

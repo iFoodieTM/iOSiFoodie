@@ -43,7 +43,6 @@ class EditProfile: UIViewController {
     
     override func viewDidLoad() {
         
-        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
         super.viewDidLoad()
    
         Name_text.isUserInteractionEnabled = false
@@ -194,8 +193,6 @@ class EditProfile: UIViewController {
                 
             }
         }
-        
-        
     }
     
     

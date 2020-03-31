@@ -19,7 +19,7 @@ class RegisterUserController: UIViewController {
     
     override func viewDidLoad() {
         
-        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondo_IF_2 (1)"))
         super.viewDidLoad()
     
         if let url = URL(string: "/Users/victor/Desktop/iOSiFoodie/iOSiFoodie/Assets.xcassets/descarga.imageset/descarga.jpeg"), let html = try? String(contentsOf: url, encoding: .utf8)

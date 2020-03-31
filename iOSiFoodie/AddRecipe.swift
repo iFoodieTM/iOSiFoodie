@@ -4,15 +4,13 @@ import Alamofire
 
 var recipe : Recipe?
 
-class AddRecipe: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate{
+class AddRecipe: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate{
     
     @IBOutlet weak var requiredField: UILabel!
     @IBOutlet weak var titleRecipe: UITextField!
     @IBOutlet weak var deletePhotoButton: UIButton!
     @IBOutlet weak var deleteVideoButton: UIButton!
     @IBOutlet weak var imageRecipeView: UIImageView!
-    @IBOutlet weak var descriptionRecipe: UITextField!
-    @IBOutlet weak var difficultyText: UILabel!
     @IBOutlet weak var addVideoURL: UITextField!
     @IBOutlet weak var viewVideoURL: UILabel!
     @IBOutlet weak var timeRecipe: UITextField!
@@ -20,6 +18,12 @@ class AddRecipe: UIViewController, UINavigationControllerDelegate, UIImagePicker
     @IBOutlet weak var timeRequired: UILabel!
     @IBOutlet weak var changePhotoButton: UIButton!
     @IBOutlet weak var addPhotoButton: UIButton!
+    @IBOutlet weak var difficultyButton1: UIButton!
+    @IBOutlet weak var difficultyButton2: UIButton!
+    @IBOutlet weak var difficultyButton3: UIButton!
+    @IBOutlet weak var viewFields: UIView!
+    @IBOutlet weak var viewImage: UIView!
+    @IBOutlet weak var descriptionRecipe: UITextView!
     
     var imagePicker : UIImagePickerController?
     
@@ -40,31 +44,21 @@ class AddRecipe: UIViewController, UINavigationControllerDelegate, UIImagePicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "fondoIFOODIE"))
+        difficulty1()
+        descriptionRecipe.delegate = self
+        descriptionRecipe.layer.cornerRadius = 4
+        timeRecipe.layer.cornerRadius = 4
+        addVideoURL.layer.cornerRadius = 4
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         if recipe != nil{
             setDataRecipe()
         }
     }
-//    
-//    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        self.view.endEditing(true)
-//    }
     
     @IBAction func next(_ sender: Any) {
             fillRecipe()
-    }
-    
-    @IBAction func maxDescriptionLength(_ sender: UITextField) {
-        checkMaxLength(textField: descriptionRecipe, maxLength: 100)
     }
     
     @IBAction func timeRequired(_ sender: Any) {
@@ -75,11 +69,16 @@ class AddRecipe: UIViewController, UINavigationControllerDelegate, UIImagePicker
         }
     }
     
-    @IBAction func descriptionRequired(_ sender: Any) {
+    func textViewDidChange(_ textView: UITextView) {
         if descriptionRecipe.text!.isEmpty{
             descriptionRequired.isHidden = false
+            print("Descripción vacía")
         }else{
             descriptionRequired.isHidden = true
+        }
+        
+        if (descriptionRecipe.text!.count > 150) {
+            descriptionRecipe.deleteBackward()
         }
     }
     
@@ -94,33 +93,28 @@ class AddRecipe: UIViewController, UINavigationControllerDelegate, UIImagePicker
     }
     
     @IBAction func difficulty1(_ sender: Any) {
+        difficulty1()
+    }
+    
+    public func difficulty1(){
         difficulty = 1
-        difficultyText.text = "1"
-        difficultyText.isHidden = false
+        difficultyButton1.alpha = 1
+        difficultyButton2.alpha = 0.5
+        difficultyButton3.alpha = 0.5
     }
     
     @IBAction func difficulty2(_ sender: Any) {
         difficulty = 2
-        difficultyText.text = "2"
-        difficultyText.isHidden = false
+        difficultyButton1.alpha = 0.5
+        difficultyButton2.alpha = 1
+        difficultyButton3.alpha = 0.5
     }
     
     @IBAction func difficulty3(_ sender: Any) {
         difficulty = 3
-        difficultyText.text = "3"
-        difficultyText.isHidden = false
-    }
-    
-    @IBAction func difficulty4(_ sender: Any) {
-        difficulty = 4
-        difficultyText.text = "4"
-        difficultyText.isHidden = false
-    }
-    
-    @IBAction func difficulty5(_ sender: Any) {
-        difficulty = 5
-        difficultyText.text = "5"
-        difficultyText.isHidden = false
+        difficultyButton1.alpha = 0.5
+        difficultyButton2.alpha = 0.5
+        difficultyButton3.alpha = 1
     }
     
     @IBAction func titleChanged(_ sender: UITextField) {
@@ -141,6 +135,9 @@ class AddRecipe: UIViewController, UINavigationControllerDelegate, UIImagePicker
         imageRecipeView.image = nil
         changePhotoButton.isHidden = true
         addPhotoButton.isHidden = false
+        viewFields.center = CGPoint (x : 200, y: 350)
+        viewImage.center = CGPoint (x : 200, y: 550)
+        viewImage.isHidden = true
     }
     
     @IBAction func changePhoto(_ sender: UIButton) {
@@ -211,6 +208,7 @@ class AddRecipe: UIViewController, UINavigationControllerDelegate, UIImagePicker
         imageRecipeView.image = uploadedImage
         changePhotoButton.isHidden = false
         addPhotoButton.isHidden = true
+        setImage()
     }
     
     @IBAction func addVideoURL(_ sender: Any) {
@@ -229,6 +227,9 @@ class AddRecipe: UIViewController, UINavigationControllerDelegate, UIImagePicker
             self.present(alert, animated: true, completion: nil)
         }
         if addVideoURL.text != "" && (addVideoURL.text?.contains("https://youtu.be/"))! && !(addVideoURL.text?.contains(" "))!{
+            let alert = UIAlertController(title: "URL de vídeo añadida", message: "Podrás ver cómo queda el vídeo en tu receta cuando acabes de rellenar los datos de tu nueva receta", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Vale", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             videoURL = addVideoURL.text!
         }
     }
@@ -249,8 +250,6 @@ class AddRecipe: UIViewController, UINavigationControllerDelegate, UIImagePicker
         timeRecipe.text = String(recipe!.time)
         
         difficulty = recipe!.difficulty
-        difficultyText.isHidden = false
-        difficultyText.text = String(recipe!.difficulty)
         
         if recipe?.video != ""{
             addVideoURL.text = "https://youtu.be/\(String(describing: recipe!.video))"
@@ -294,4 +293,11 @@ class AddRecipe: UIViewController, UINavigationControllerDelegate, UIImagePicker
                 self.present(alert, animated: true, completion: nil)
         }
     }
+    
+    public func setImage(){
+        viewFields.center = CGPoint (x : 200, y: 560)
+        viewImage.center = CGPoint (x : 200, y: 240)
+        viewImage.isHidden = false
+    }
 }
+
